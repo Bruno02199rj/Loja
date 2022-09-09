@@ -12,7 +12,8 @@ module.exports = {
         'negativedeg': '-2deg'
       },
       colors:{
-        'figma-color': '#F4F6F5',
+        'color-main' : '#fef8f1',
+        'figma-color': '#F4F6F5'
     }},
   },
   plugins: [],

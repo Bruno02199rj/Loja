@@ -8,9 +8,9 @@ const Main = () =>{
  
         <>
         <main className="px-12 w-full">
-        <div className="bg-figma-color w-full h-96 rounded-lg mt-8">
+        <div className="bg-figma-color w-full h-96 rounded-lg ">
         <figure className="float-right mr-16 ">
-        <img className="h-96 " src={elmodel}></img>
+        <img className="h-96" alt='imagem 1' src={elmodel}></img>
         </figure>
         <div className="h-62  mt-8 inline-block ml-16  w-64">
                 <div className="bg-black rotate-[-2deg]  absolute  w-28 h-12"></div>
