@@ -2,9 +2,10 @@ import React from "react";
 import {
   BrowserRouter as Router,
     Routes,
-  Route
+  Route,
+  useParams
 } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./pages/CreateUser";
 import Home from "./pages/Home";
 import Logado from "./pages/Logado";
 
@@ -17,7 +18,7 @@ export function AppRoutes(){
             
               <Route path="/" element={<Home/>} />
               <Route path='/users' element={<Login/>} />
-              <Route path="/users/:user_id" element={<Logado/>} />
+              <Route path="/users/:user_id" element={<Logado />  } />
 
            </Routes>
         </Router>

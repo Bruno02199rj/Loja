@@ -18,7 +18,7 @@ function Home(){
         <Main/>
         <Brands/>
         <Collection/>
-        <Link to='/users'>Go Home</Link>
+        <Link to='/users'>Go Homessa</Link>
         </>
     )
 }

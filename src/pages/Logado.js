@@ -1,24 +1,38 @@
 import axios from "axios";
-import React,{useEffect, useParams} from "react";
+import React,{useEffect, useState} from "react";
+
+import { useLocation } from 'react-router-dom'
+
 
 const Logado = () => {
+    const [usery,setUserY] = useState('')
+    const location = useLocation();
+    const { from } = location.state;
+
 
 
 
     
     useEffect(() => {
-        axios.get('/users/631259abfdf50b46a6518432') //pegar user id dinamicamente
+        axios.get('/users/'+from) //pegar user id dinamicamente
         .then((res)=>{
+            setUserY(res.data.username)
             console.log(res)
         })
     }, []);
 
 
+     
+
+    
+  
+
 
 
     return(
         <>
-        <h1>Logado here</h1>
+        <h1 >logado : {usery}</h1>
+        
         </>
     )
 }
