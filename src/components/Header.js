@@ -22,7 +22,7 @@ const Header = () =>{
                     <li className="px-4 hover:bg-black hover:text-white ease-in duration-300 rounded-md h-7"><a>FAVORITOS</a></li>
                     <li className="px-4 hover:bg-black hover:text-white ease-in duration-300 rounded-md h-7"><a>LIFESTYLE</a></li>
                     
-                    <li className="px-4 hover:bg-black hover:text-white ease-in duration-300 rounded-md h-7"><a href={baseURL + 'users'}>ENTRAR</a></li>
+                    <li className="px-4 hover:bg-black hover:text-white ease-in duration-300 rounded-md h-7"><Link to='/users'>ADMIN</Link></li>
                 </ul>
                </nav>
             </header>
