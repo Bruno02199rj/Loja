@@ -23,6 +23,7 @@ const Collection = () =>{
     }, [setData]);
 
    
+    console.log(eldata)
     
 
     return(
@@ -51,11 +52,13 @@ const Collection = () =>{
                         
                         <div className="  bg-[#f4f6f5] rounded-xl mt-10 inline-block  ml-12 h-80">
                         <img className="w-48 h-32" src={event?.productImage}></img>
-                       
+                        <span> {event?.productQuantity}</span>
                        <p className="text-fuchsia-700 font-bold mx-12 mt-2">Cor: {event?.productDescription}</p>
                         <p className="text-fuchsia-700 font-bold mx-12 mt-2"> Tamanho: M</p>
+                        
                         <span class="mt-24 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
                         <span  class="relative text-white"><p className="px-8 ">R$: {event?.productPrice}</p></span>
+                      
                         </span>
                         </div>
                         

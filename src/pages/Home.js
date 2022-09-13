@@ -3,7 +3,7 @@ import Main from '../components/Main';
 import Collection from '../components/Collection';
 import Brands from '../components/Brands';
 
-import { Link } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 
 
@@ -18,9 +18,9 @@ function Home(){
         <Main/>
         <Brands/>
         <Collection/>
-        
         </>
     )
+   
 }
 
 export default Home
