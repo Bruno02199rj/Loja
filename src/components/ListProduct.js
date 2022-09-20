@@ -26,6 +26,7 @@ const ListProduct = () => {
     const endIndex = startIndex + itensPerPage
     const currentItens = ProductData.slice(startIndex, endIndex)
 
+ 
   
 
     useEffect(() => {
@@ -50,11 +51,11 @@ const handleEditProducts = () =>{
    
     
 
-    const url = '/products/631259abfdf50b46a6518432/'+ProductId //pegar url do produto dinamicamente
+    const url = '/products/63259abfdf50b46a6518432/'+ProductId //pegar url do produto dinamicamente
 
     axios.patch(url,data,{
         headers: {
-            'authentication': '631259abfdf50b46a6518432'
+            'authentication': '63259abfdf50b46a6518432'
           }
     })
     .then((res)=>{
@@ -90,52 +91,53 @@ setShowThis(true)
     return (
         <>
 
-        <div className="w-full h-full  flex">
+        <div className="w-full h-full  ">
 
             
            {
         currentItens?.map((event,index)=>{
            
           return (
-            <div className="h-full py-2 hover:bg-cyan-200 rounded w-42 mx-2  ">
-                
-                <div className="mx-6"><img  className="w-44  h-32" src={event?.productImage}></img></div>
+            <div className="h-full py-2 hover:bg-cyan-200 rounded w-full my-4 flex ">
+                <img  className="w-32  h-32" src={event?.productImage}></img>
             
-            <div className="  mx-12 ">
+            <div className="  mx-2 ">
             <h1 className="w-max flex"><TiTag className="mr-2"/>{event?.productName}
           
             </h1>
              
             <h1 className="flex"><MdOutlinePriceCheck className="mr-2"/> R$ {event?.productPrice}</h1>
             <h1 className="flex"><MdInvertColors className="mr-2"/>{event?.productDescription}</h1>
+            
             <h1 className="flex"><MdProductionQuantityLimits className="mr-2"/> {event?.productQuantity}</h1>  
-      
+            
+           
 
             </div>
            
           
             {
                 showThis 
-                ?   <div className="mt-2 mx-12 flex"> <input onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm" name=" quantity" placeholder=" Name" onChange={(e) => setProductPatchName(e.target.value)}></input>
+                ?   <div className="mt-2 mx-2 h-6 flex"> <input onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm h-6" name=" quantity" placeholder=" Name" onChange={(e) => setProductPatchName(e.target.value)}></input>
                         <button onClick={(e) => handleEditProducts (e)}><AiOutlineCaretRight/></button>
                     </div>
-                :    <div className="flex mt-2 mx-12"><p>Item</p><FaLockOpen className="hover:scale-125 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
+                :    <div className="flex mt-2 mx-2"><p>Item</p><FaLockOpen className="hover:scale-25 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
             }
       
            {
                 showThis 
-                ?   <div className="mt-2 mx-12 flex"> <input type="number" onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm" name=" quantity" placeholder=" Price" onChange={(e) => setProductPatchPrice(e.target.value)}></input>
+                ?   <div className="mt-2 mx-2 flex h-6"> <input type="number" onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm h-6" name=" quantity" placeholder=" Price" onChange={(e) => setProductPatchPrice(e.target.value)}></input>
                         <button onClick={(e) => handleEditProducts (e)}><AiOutlineCaretRight/></button>
                     </div>
-                :    <div className="flex mt-2 mx-12"><p>Preço</p><FaLockOpen className="hover:scale-125 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
+                :    <div className="flex mt-2 mx-2"><p>Preço</p><FaLockOpen className="hover:scale-25 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
             }
      
            {
                 showThis 
-                ?   <div className="mt-2 mx-12 flex"> <input onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm" name=" quantity" placeholder=" Quantity" onChange={(e) => setProductPatchQuantity(e.target.value)}></input>
+                ?   <div className="mt-2 mx-2 flex h-6"> <input onClick={() => getId (event,index)} className="w-28 border-solid border-2 border-sky-500 rounded text-cyan-600 text-sm h-6" name=" quantity" placeholder=" Quantity" onChange={(e) => setProductPatchQuantity(e.target.value)}></input>
                         <button onClick={(e) => handleEditProducts (e)}><AiOutlineCaretRight/></button>
                     </div>
-                :    <div className="flex mt-2 mx-12"><p>Quantidade</p><FaLockOpen className="hover:scale-125 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
+                :    <div className="flex mt-2 mx-2"><p>Quantidade</p><FaLockOpen className="hover:scale-25 ml-2" onClick={(e) => handleShowEdit (e)}/></div>
             }
            
            
@@ -148,8 +150,8 @@ setShowThis(true)
            }
               {
                 showThisOk
-                ?<div className='h-max w-max border-solid border-2 border-sky-500 rounded mt-12 bg-green-100 animate-pulse'><div className="flex  bg-green-100"><p className="text-sm flex mr-2 bg-green-100">Editado com sucesso</p><a href="http://localhost:3000/sessions/631d30c461f9b4ee32685abc/a"><FiCheck className="bg-green-200 rounded-full"/></a> </div></div>
-                :<div className="animate-pulse mt-12"><AiOutlineLoading3Quarters color="orange" className="h-5 w-5 animate-spin"> </AiOutlineLoading3Quarters> </div>
+                ?<div className='h-max w-max border-solid border-2 border-sky-500 rounded mt-2 bg-green-100 animate-pulse'><div className="flex  bg-green-100"><p className="text-sm flex mr-2 bg-green-100">Editado com sucesso</p><a href="http://localhost:3000/sessions/631d30c461f9b4ee32685abc/a"><FiCheck className="bg-green-200 rounded-full"/></a> </div></div>
+                :<div className="animate-pulse mt-2"><AiOutlineLoading3Quarters color="orange" className="h-5 w-5 animate-spin"> </AiOutlineLoading3Quarters> </div>
             }
           
         </div>
@@ -159,7 +161,7 @@ setShowThis(true)
         <div className="ml-8 mt-8">
                 {Array.from(Array(pages), (item , index) =>{
 
-                 return <button  value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}className="px-4  mr-4 bg-black text-white hover:scale-125 rounded justify-content align-center">{index + 1}</button>
+                 return <button  value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}className="px-4  mr-4 bg-black text-white hover:scale-25 rounded justify-content align-center">{index + 1}</button>
                 })}
                 </div>
         </>

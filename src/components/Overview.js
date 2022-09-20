@@ -64,7 +64,7 @@ var baseUrl = 'http://localhost:3001'
                 <h1>Gráfico</h1>
             </section>
 
-            <section className="w-full  h-54 mt-2">
+            <section className="w-full  h-max mt-2">
             <ListProduct/>
             </section>
           </div>

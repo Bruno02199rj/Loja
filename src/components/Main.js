@@ -7,7 +7,7 @@ const Main = () =>{
     return(
  
         <>
-        <main className="px-12 w-full">
+        <main className="px-12 w-full inline-block mt-44">
         <div className="bg-figma-color w-full h-96 rounded-lg ">
         <figure className="float-right mr-16 ">
         <img className="h-96" alt='imagem 1' src={elmodel}></img>

@@ -13,3 +13,13 @@
   background-color: #fef8f1
 
 }
+
+/*                    {
+                showCart
+                ? Cart.map((event,index)=>{
+                    return <div className="w-screen h-32 ">
+                        <div className="">{event.productName}</div>
+                    </div>
+                })
+                :<p>nada no carrinho</p>
+            }*/ 
