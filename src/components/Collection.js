@@ -4,11 +4,13 @@ import {BsFillCartPlusFill} from "react-icons/bs"
 import {IoMdCloseCircle} from "react-icons/io"
 import {MdDeleteForever} from "react-icons/md"
 import {FiCheck} from "react-icons/fi"
-
-
 import axios from "axios";
 
 const Collection = () =>{
+   
+
+
+
 
     const [eldata, setData] = useState([])
     const [itensPerPage, setItensPerPage] = useState(6)
@@ -23,12 +25,16 @@ const Collection = () =>{
     const [showCart, setShowCart] = useState();
     const [showModal, setShowModal] = useState();
     const [showWarning, setShowWarning] = useState();
+    const [post , setPost] = useState()
+    const [idTransaction, setIdTransaction] = useState();
 
-    console.log(Cart)
+    
 
+  
     useEffect(() => {
       axios.get('/products').then(res=>{
             setData(res.data)
+            console.log(res.data)
            
         })
     }, [setData]);
@@ -38,10 +44,31 @@ const Collection = () =>{
         setShowCart(true)
         setShowModal(true)
     }
+
    
+
+  
     const handleCart = (event) => {
-      console.log(event)
-        Cart.push(event)
+     
+      
+      
+      console.log(event +'her event') //event dando como object object
+     
+    
+         
+        var elitem = Cart.map((item,index)=> item._id)
+        console.log(elitem) //retornando arrayvaz
+    
+        axios.post('/carts', {products:elitem})
+        .then(res => {
+        
+            console.log(res.data);
+            setIdTransaction(res.data._id)
+            
+          })
+       
+        
+        
         
         setShowWarning(true)
         showWarning = setTimeout(()=>{
@@ -55,8 +82,37 @@ const Collection = () =>{
         const item = Cart.slice()
         item.splice(index,1)
         setCart(item)
+        setShowModal(false)
+        var des = Cart.map((item,index)=> item._id)
+        axios.post('/carts', {des})
+        .then(res => {
+        
+            console.log(res.data);
+            
+          })
+  
     }
 
+    const handleredirect = (item,index)=>{
+        axios.get(`/transaction${idTransaction}`)
+        .then(res => {
+        
+            console.log(res.data +'here 73');
+            setIdTransaction(res.data._id)
+            
+          })
+        axios.get('/transactions').then(res=>{
+        
+            var token = res.data[0].code
+            console.log(token)
+            window.location = `https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=${token}`
+          
+              
+            
+        }).catch(err=>{
+            console.log(err +'err 15')
+        })
+    }
     return(
        
         <section className="  h-screen  ml-12 mr-1  flex">
@@ -95,7 +151,7 @@ const Collection = () =>{
                             <div className="flex m-4">
                             <img className="h-16 w-16 " src={event.productImage} ></img>
                             <p className=" ml-32">{event.productName}</p>
-                            <p className="ml-32">{event.productPrice}</p>
+                            <p className="ml-32">{event.productPrice.toFixed(2)}R$</p>
                             </div>
                             
                         
@@ -104,7 +160,7 @@ const Collection = () =>{
                     </div>
                 )
                })}
-        <div className="bg-red-400 h-max w-full "><p>comprar</p></div>
+        <div className="bg-red-400 h-max w-full "><button onClick={(item,index)=> handleredirect (item,index)}>comprar</button></div>
    
       </div>
     </div>
@@ -142,6 +198,7 @@ const Collection = () =>{
                         <img className="w-48 h-32" src={event?.productImage}></img>
                         <span> {event?.productQuantity}</span>
                         <p>{event.productName}</p>
+                        <p>{event.productPrice.toFixed(2)}</p>
                         <p onClick={() => handleCart (event)}>+</p>
                        
                        <p className="text-fuchsia-700 font-bold mx-12 mt-2">Cor: {event?.productDescription}</p>
