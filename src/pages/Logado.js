@@ -28,7 +28,7 @@ const Logado = () => {
             <li className="text-white mt-8 flex inline-block hover:text-rose-800"><BsCartPlusFill size={30} className="mr-2"></BsCartPlusFill>Cadastrar</li>
             </div>
             <div className="w-56 h-8 hover:bg-gray-800 transition duration-150 ease-out hover:ease-in ">
-            <li className="text-white mt-8 flex inline-block hover:text-rose-800"><FaMoneyCheckAlt size={30} className=" mr-2"></FaMoneyCheckAlt>Finanças</li>
+            <li className="text-white mt-8 flex inline-block hover:text-rose-800"><FaMoneyCheckAlt size={30} className=" mr-2"></FaMoneyCheckAlt>Pedidos</li>
             </div>
             <div className="w-56 h-8 hover:bg-gray-800 transition duration-150 ease-out hover:ease-in ">
             <li className="text-white mt-8 flex inline-block hover:text-rose-800"><FaTrash size={30} className=" mr-2"></FaTrash>Excluir Produto</li>
@@ -51,8 +51,8 @@ const Logado = () => {
 
              </aside>
            
-
-<Outlet/>      
+     
+            <Outlet/>      
    
         </div>
 

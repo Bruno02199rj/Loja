@@ -6,7 +6,7 @@ import ListProduct from "../components/ListProduct";
 
 const Overview = () => {
 
-const [state,setState] = useState({})
+
 
 var baseUrl = 'http://localhost:3001'
 

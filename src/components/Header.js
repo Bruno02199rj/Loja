@@ -7,7 +7,7 @@ const Header = ({acao}) =>{
     
     return(
         
-        <div className={ `fixed w-full mt-2 ${acao? 'bg-[#fef9f3] text-slate-500 z-50' : ''}`}>
+        <div className={ ` fixed w-full mt-2 ${acao? 'bg-[#fef9f3] text-slate-500 z-50' : ''}`}>
       
         <figure className="inline-block ">
                        <img className="h-max ml-12 rounded-full" src={logo01}/>
