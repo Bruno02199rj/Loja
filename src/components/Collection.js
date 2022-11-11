@@ -90,10 +90,12 @@
         const  handleredirect = (item, index) => {
 
             var elitem = Cart.map((item, index) => item._id)
-        
+            var elitemImage = Cart.map((item, index) => item.productImage)
+            var elitememit = Cart.map((item, index) => item)
+        console.log(elitemImage)
              //retornando arrayvaz
             console.log(elitem)
-             axios.post('/carts', { products: elitem, sizeOption: sizeOpt, colorOption: getColorValue})
+             axios.post('/carts', { products: elitem , sizeOption: sizeOpt, colorOption: getColorValue, productImage:elitemImage,})
            
         
                 .then(res => {
@@ -110,7 +112,7 @@
                              })
                                
                                //mandar codigo da transação para o banco 
-                            window.location.href = `${res.data}`
+                            //window.location.href = `${res.data}`
                         })
                 })
         }

@@ -25,14 +25,43 @@ useEffect(() => {
 
 
 return(
-  <div>
-    <p>carrinho:{getCart[0]?.eltransactionCode}</p>
-    <p>product_id:{getCode[0]?.products}</p>
-    <p>tamanho:{getCode[0]?.sizeOption}</p>
-    <p>cor:{getCode[0]?.colorOption}</p>
+  <div className='w-full  h-screen bg-gray-800'>
+    <p className='ml-12 mt-4 font-bold text-xl text-white'>Dashboard / Pedidos</p>
+
+ 
+    <div className='w-11/12 ml-12 h-8  bg-slate-100 mt-6 border-b-2 border-indigo-500 flex'>
+    
+    <p className='ml-4 mr-56 font-mono'>CÓD</p>
+    <p className='ml-6 mr-12 font-mono'>EMISSÃO</p>
+    <p className='ml-16 w-12 mr-12 font-mono'>TAMANHO</p>
+    <p className='ml-4 w-12 mr-12 font-mono'>COR</p>
+    <p className='ml-32'>FOTO</p>
+   
+    </div>
+    
+    {getCart?.map((item,index)=>{
+       
+       return(
+        <div className='w-11/12 ml-12 h-12  bg-slate-100 border-b-2 border-indigo-500 flex'>
+   
+   <p className='ml-4 h-2 mt-2 w-64 text-sm'>{item.eltransactionCode}</p>
+   <p className='h-4 w-fit ml-4 mt-2 mr-6 text-sm'>{item.emissão.substring(0, item.emissão.length - 41)}</p>
+   <p className='ml-4 mt-2 text-sm w-24 mt-2'>{getCode[index]?.sizeOption.map((item)=><p className='text-xs h-2'>{item}</p>)}</p>     
+    <div className='mt-2'>{getCode[index]?.colorOption.map((item)=><div className=" h-4 w-4  border-solid border-2 border-black rounded-2xl ml-2" style={{  backgroundImage: `url("${item}")` }}></div>)}    </div>
+    <p className='ml-52 flex'>{getCode[index]?.productImage.map((item)=><img className='h-10 w-10' src={item}></img>)}</p>   
+    </div>  
+       )
+      })} 
+     
   </div>
 )
-
+//<div className=" h-4 w-4 mt-2 border-solid border-2 border-black rounded-2xl ml-2" style={{  backgroundImage: `url("${getCode[index]?.colorOption}")` }}>${getCode[index]?.colorOption}</div>
+// <p>carrinho:{getCart[0]?.eltransactionCode}</p>
+//<p>product_id:{getCode[0]?.products}</p>
+//<p>product_id:{getCode[0]?.product}</p>
+//<p>tamanho:{getCode[0]?.sizeOption}</p>
+//<p>cor:{getCode[0]?.colorOption}</p>
+//<img className='h-32 w-32' src={getCode[0]?.productImage}></img>
 }
 
 export default SalesOrders
