@@ -8,9 +8,10 @@ import CreateUser from './pages/CreateUser'
 import Logado from './pages/Logado';
 import Overview from './components/Overview';
 import SalesOrders from './components/SalesOrders';
+import CreateProduct from './components/CreateProduct';
 
 
-var baseUrl = 'http://localhost:3001'
+
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   return (
     
     
-    <div className="App">
+    <div className="App ">
      <BrowserRouter>
    <Routes>
 
@@ -29,12 +30,15 @@ function App() {
     </Route>
     
     
-      <Route path='/users' element={<CreateUser/>}></Route>
+  <Route path='/users' element={<CreateUser/>}></Route>
      
   <Route path='/sessions/:user_id' element={<Logado/>}>
-  <Route path="a" element={<Overview/>}></Route>
-  <Route path="b" element={<SalesOrders/>}></Route>
-  
+  <Route path="overview" element={<Overview/>}></Route>
+  <Route path="orders" element={<SalesOrders/>}>
+
+  </Route>
+ 
+  <Route path='create' element={<CreateProduct/>}></Route>
   </Route>
 
 

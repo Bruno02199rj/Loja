@@ -6,20 +6,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+  font-family: Proxima Nova, system-ui, sans-serif;
 }
 
+:root {
+  --swiper-navigation-color: #E49A38;
+  --swiper-pagination-color: #E49A38;
+}
 .cor{
   background-color: #fef8f1
 
 }
 
-/*                    {
-                showCart
-                ? Cart.map((event,index)=>{
-                    return <div className="w-screen h-32 ">
-                        <div className="">{event.productName}</div>
-                    </div>
-                })
-                :<p>nada no carrinho</p>
-            }*/ 

@@ -1,10 +1,18 @@
 
     import React, { useEffect, useState } from "react";
-    import { BsFillCartPlusFill } from "react-icons/bs"
+    import { BsFillCartPlusFill,BsCart3 } from "react-icons/bs"
     import { IoMdCloseCircle } from "react-icons/io"
     import { MdDeleteForever } from "react-icons/md"
     import { FiCheck } from "react-icons/fi"
+
     import axios from "axios";
+    import PaginationComponent from "./PaginationComponent";
+import Swiper from "./Swiper";
+import { SwiperSlide } from "swiper/react";
+import Swiper2 from "./SwiperCollection";
+import Footer from "./Footer";
+    
+    
 
     const Collection = () => {
 
@@ -12,9 +20,8 @@
 
         const [sizeOpt,setSizeOpt] = useState([])
         const [resId, setResId] = useState()
-        const [eldata, setData] = useState([])
-        const [itensPerPage, setItensPerPage] = useState(6)
-        const [currentPage, setCurrentPage] = useState(0)
+        
+      
         const [Cart, setCart] = useState([]);
         const [showCart, setShowCart] = useState();
         const [showModal, setShowModal] = useState();
@@ -28,10 +35,17 @@
         const [allOptionSize, setAllOptionSize] = useState([])
         const [transactionCode,setTransactionCode] = useState()
 
+        const [eldata, setElData] = useState([])
+        const [itensPerPage, setItensPerPage] = useState(4)
+        const [currentPage, setCurrentPage] = useState(0)
         const pages = Math.ceil(eldata.length / itensPerPage)
         const startIndex = currentPage * itensPerPage
         const endIndex = startIndex + itensPerPage
         const currentItens = eldata.slice(startIndex, endIndex)
+      
+
+    
+
 
 
 
@@ -40,11 +54,26 @@
 
         useEffect(() => {
             axios.get('/products').then(res => {
-                setData(res.data)
-                console.log(res.data)
+
+                setElData(res.data)
+       
+          
+                
+               
 
             })
-        }, [setData]);
+        }, []);
+
+
+     
+
+
+
+
+console.log(eldata)
+
+
+
 
         const modalCollection = () => {
 
@@ -92,7 +121,7 @@
             var elitem = Cart.map((item, index) => item._id)
             var elitemImage = Cart.map((item, index) => item.productImage)
             var elitememit = Cart.map((item, index) => item)
-        console.log(elitemImage)
+             console.log(elitemImage)
              //retornando arrayvaz
             console.log(elitem)
              axios.post('/carts', { products: elitem , sizeOption: sizeOpt, colorOption: getColorValue, productImage:elitemImage,})
@@ -112,7 +141,8 @@
                              })
                                
                                //mandar codigo da transação para o banco 
-                            //window.location.href = `${res.data}`
+                            
+                               window.location.href = `${res.data}`
                         })
                 })
         }
@@ -136,27 +166,25 @@
             
         }
 
-
+      
         return (
-
-            <section className="  h-screen  ml-12 mr-1  flex">
-
-                <div className=" mt-10   inline-block    h-52">
-
-                    <blockquote class="   mb-12 text-2xlfont-bold mx-12 italic text-center text-slate-900">
-                        When you look
-                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
-                            <span class="relative text-white">annoyed</span>
-                        </span>
-                        all the time, people think that you're busy.
+            
+            <section className="  h-max    w-max   ">
+                            
+                            <div className="">
+                <div className=" mt-10  lg:pl-40 w-screen  h-full ">
+                <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block' />  
+                    <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900">
+                       
                     </blockquote>
+                    
                     {showModal
                         ? <div>
 
 
                             <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-                                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                                <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
                                 <div class="fixed inset-0 z-10 overflow-y-auto">
                                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -167,17 +195,23 @@
                                             <h1>Carrinho</h1>
 
                                             {Cart.map((event, index) => {
-                                                console.log(event)
+                                               console.log(event.productImage)
                                                 return (
                                                     <div className="">
                                                         <div className="w-full h-max  bg-red-100">
+                                                       
                                                             <MdDeleteForever className="float-right " onClick={(event, index) => handleRemove(event, index)} size={30}></MdDeleteForever>
+                                                          
                                                             <div className="flex m-4">
-                                                                <img className="h-16 w-16 " src={event.productImage} ></img>
+                                                              
+                                                                {event.productImage.map((item)=> <img className="h-16 w-16 mr-2 " src={item.image} ></img>)}
+                                                               
                                                                 <p className=" ml-32">{event.productName}</p>
                                                                 <p className="ml-32">{event.productPrice.toFixed(2)}R$</p>
                                                                 <p>tamanho: {sizeOpt[index]}</p>
                                                                <div className=" h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl ml-2" style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div>
+                                                              
+
                                                             </div>
 
 
@@ -199,7 +233,7 @@
                     }
 
 
-                    <div className=" w-max h-max float-right text-green-500 ">
+                    <div className=" w-max h-max float-right  ">
                         {
                             showWarning ? <FiCheck className="animate-bounce h-14 w-14" /> : <p></p>
                         }
@@ -207,16 +241,9 @@
 
                     </div>
 
-                    <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='float-right  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7' />
+                  
 
-                    <div className="mx-12 relative left">
-
-                        {Array.from(Array(pages), (item, index) => {
-
-                            return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))} className="px-4  mr-4 bg-black text-white hover:scale-125 rounded justify-content align-center">{index + 1}</button>
-                        })}
-
-                    </div>
+                  
 
                     {
                         getDetails ? <div>
@@ -225,37 +252,54 @@
                             <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
 
-                                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
+                                <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+  
                                 <div class="fixed inset-0 z-10 overflow-y-auto">
                                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
 
-                                        <div className="h-max w-11/8  mt-32 flex">
+                                        <div className="h-max w-11/8   flex">
 
-                                            <div className="h-96 w-96 ml-16 ">
-                                                <img className="h-full w-full" src={getInformation.productImage}></img>
-
-
+                                            <div className="h-82 w-42  ml-16 ">
+                                            
+                                               <div className="h-full w-full bg-yellow-600" >
+                                               
+                                                <Swiper   eldata={getInformation} /><SwiperSlide />
+                                               
+                                                </div>
+                                                
+            
                                             </div>
 
 
-                                            <div className="bg-white float-right h-96 w-full mr-16 pl-4 pr-4">
+                                            <div className="bg-white float-right h-82 w-full mr-16 pl-4 pr-4">
+                                                
                                                 <p className="float-right h-6 w-6 rounded-2xl bg-black text-white font-bold mt-2" onClick={() => setGetDetails(false)} >X</p>
                                                 <p className=" mt-2 text-2xl">VESTIDO CURTO EM PONTO ROMA COM VIÉS CONTRASTANTE E ETIQUETA APLICADA NA BARRA PRETO </p>
-                                                <p className="text-stone-400 float-left mt-6">SKU:{getInformation._id}</p>
+                                             
+                                              
+                                               <p className="text-stone-400 float-left mt-6">SKU:{getInformation._id}</p>
 
                                                 <div className="h-8 w-44 bg-slate-400 mt-16 rounded">
                                                     <p className="text-white">em até 6x sem juros</p>
                                                 </div>
-
-                                                <span className="float-left text-2xl text-black font-bold mt-4">R${getInformation.productPrice.toFixed(2)}</span>
+                                                
+                                                <div className="h-12 w-full   flex">
+                                                <span className="float-left text-2xl text-yellow-500 font-bold mt-2">R${getInformation.productPrice.toFixed(2)}</span>
+                                                <div className="ml-96 float-right w-/11/12 h-max rounded-lg bg-black ">
+                                                    <p className="break-all	text-yellow-600 mx-4 my-2 text-white">{getInformation.productDescription}</p>
+                                                </div>
+                                                
+                                              </div>
+                                                
 
                                                 <div className="mt-12 w-full h-4 ">
-                                                    <span className="float-left mt-4">SELECIONAR TAMANHO</span>
+                                                
+                                                    <span className="float-left">SELECIONAR TAMANHO</span>
                                                                                                                   
 
                                                 </div>
-                                                <div className=" w-full  mt-8">
+                                               
+                                                <div className=" w-full  mt-4">
                                                 {getInformation.productSize.map((item, index) => {
                                                                 var sizeValue =  getInformation.productSize[index].size  
                                                                
@@ -295,51 +339,92 @@
                                                     
                                                 </div>
                                                 
-                                                <div className="  w-full mt-24"><span className="py-4 px-4 w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
+                                                <div className="  w-full mt-24 mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> : <p>nao mostrar</p>
+                        </div> : <p></p>
 
                     }
 
-
+   
+        
                     {
                         currentItens?.map((event, index) => {
+                   console.log(event)
+                         
                             return (
+                                    
+                                <div className=" w-42 lg:w-60  lg:inline-block   rounded-xl mt-2   mx-20 lg:mx-4      ">
+                                        
+                                    
 
-                                <div className="  bg-[#f4f6f5] rounded-xl mt-10 inline-block  ml-12 h-80">
+                                <Swiper2 eldata={event.productImage}/><SwiperSlide/>
+                                <div className="h-36 w-42   w-full bg-white rounded-b-xl">
+                                   
+                                 
+                                  
+                                <p className="text-stone-500 font bold  text-center ">{event.productDescription} </p>
+                          
+                                <div className="h-8   w-full flex ">
+                                {event.productColor.map((item)=><div className="hover:h-4  cursor-pointer h-4 w-4 mx-1 border-solid border-1 border-black rounded-2xl " style={{  backgroundImage: `url("${item.color}")` }}></div>)}
+                                </div>
+                                {console.log(event.productColor.map((item)=>item.color))}
+                                
+                                
+                               <div className="w-full h-max">
+                               <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
+                                
+                                <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
+                                <p className="text-black font-bold mr-2">Ver</p>
+                                </div>
+                                <div>
+                                    <span className="text-black ml-2">Preço</span>
+                               
+                                </div>
+                                <span className="text-black ml-2 font-bold">R${event.productPrice}</span>
+                               </div>
+                               
+                        
+                       
+                                
+                         
+                                
+                               
+                                    
 
-                                    <img className="w-48 h-32" src={event?.productImage}></img>
-                                    <span> {event?.productQuantity}</span>
-                                    <p>{event.productName}</p>
-                                    <p>{event.productPrice.toFixed(2)}</p>
-
-                                    <p onClick={() => moreDetails(event)}>x</p>
-
-                                    <p className="text-fuchsia-700 font-bold mx-12 mt-2">Cor: {event?.productDescription}</p>
-                                    <p className="text-fuchsia-700 font-bold mx-12 mt-2"> Tamanho: M</p>
-
-                                    <span class="mt-24 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
-                                        <span class="relative text-white"><p className="px-8 ">R$: {event?.productPrice}</p></span>
-                                        <p>testeste</p>
-
-                                    </span>
 
                                 </div>
 
 
+
+                                   
+                                   
+                                  
+                                   
+                                </div>
+                               
+
                             )
                         })
                     }
-
+  <div className="">
+                  
+                  <PaginationComponent  pages={pages} setCurrentPage={setCurrentPage}/>
+                    
+              </div>
+             
+           
                 </div >
-
+               
+                </div>
+                <Footer />
+              
             </section >
-
+     
 
         )
     }
