@@ -325,7 +325,7 @@ console.log(eldata)
                                                         getInformation.productColor?.map((item,index)=>{
                                                         
                                                         var colorValue = getInformation.productColor[index].color
-                                                        console.log(colorValue)
+                                                       
 
                                                         return(
                                                             <option  onClick={()=>teste0(colorValue)} value={colorValue} className="hover:h-12  cursor-pointer h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl" style={{  backgroundImage: `url("${colorValue}")` }}></option>
