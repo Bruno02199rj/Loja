@@ -211,7 +211,7 @@ console.log(eldata)
                                                                 <p>tamanho: {sizeOpt[index]}</p>
                                                                <div className=" h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl ml-2" style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div>
                                                               
-
+                                                            {console.log('swssssss')}
                                                             </div>
 
 
