@@ -169,15 +169,17 @@ console.log(eldata)
       
         return (
             
-            <section className="  h-max    w-max   ">
+            <section className="  h-max      ">
                             
-                            <div className="">
-                <div className=" mt-10  lg:pl-40 w-screen  h-full ">
+                            <div className="h-full bg-red-200 flex justify-center w-full">
+                              
+                <div className=" mt-10     h-full ">
+              
                 <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block' />  
                     <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900">
                        
                     </blockquote>
-                    
+                    <span className="font-bold">OFERTAS DO DIA</span>
                     {showModal
                         ? <div>
 
@@ -198,7 +200,7 @@ console.log(eldata)
                                                console.log(event.productImage)
                                                 return (
                                                     <div className="">
-                                                        <div className="w-full h-max  bg-red-100">
+                                                        <div className="w-full h-max  ">
                                                        
                                                             <MdDeleteForever className="float-right " onClick={(event, index) => handleRemove(event, index)} size={30}></MdDeleteForever>
                                                           
@@ -358,7 +360,7 @@ console.log(eldata)
                          
                             return (
                                     
-                                <div className=" w-42 lg:w-60  lg:inline-block   rounded-xl mt-2   mx-20 lg:mx-4      ">
+                                <div className=" w-60    rounded-xl mt-2  mx-1.5  inline-block      ">
                                         
                                     
 
@@ -421,7 +423,7 @@ console.log(eldata)
                 </div >
                
                 </div>
-                <Footer />
+
               
             </section >
      

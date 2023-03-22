@@ -7,7 +7,7 @@ import {TiSocialLinkedin} from 'react-icons/ti'
 const Footer = () =>{
 
     return (
-<div className="h-72 w-screen bg-black ">
+<div className="h-72 w-full bg-black ">
 <div className="h-48 w-full mt-12 bg-black inline-block"><p className="text-white bold text-xl mt-8">FASHION</p>
 <p className="text-white mt-8">Complete your style with awesome clothes from us.</p>
 <div className="flex mt-12">
