@@ -17,24 +17,26 @@ const Swiper2 = ({eldata}) => {
 
 
   return (
-    <Swiper className='h-max w-60 rounded-lg'
+    <Swiper className='  '
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
       slidesPerView={1}
       navigation
+      
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true ,}}
       onSwiper={(swiper) => console.log(swiper)}
+      autoHeight={true}
       onSlideChange={() => console.log('slide change')}
       
       
      >
        
        {eldata.map((item)=><SwiperSlide    style={{ backgroundImage: `url("${item.image}")`
-         ,height:250,
-         width:250 ,
+         ,height: 300,
+         width:300 ,
          backgroundPosition: 'center', 
          backgroundSize: 'cover',
          backgroundRepeat: 'no-repeat'}}></SwiperSlide>)},

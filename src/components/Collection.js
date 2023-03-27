@@ -11,6 +11,7 @@ import Swiper from "./Swiper";
 import { SwiperSlide } from "swiper/react";
 import Swiper2 from "./SwiperCollection";
 import Footer from "./Footer";
+import SwiperMostAcessed from "./SwiperMostAcessed";
     
     
 
@@ -168,18 +169,18 @@ console.log(eldata)
 
       
         return (
-            
-            <section className="  h-max      ">
-                            
-                            <div className="h-full bg-red-200 flex justify-center w-full">
-                              
-                <div className=" mt-10     h-full ">
-              
-                <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block' />  
+           
+            <section className="      mt-10  w-full h-full   ">
+                                <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block' />  
                     <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900">
                        
                     </blockquote>
-                    <span className="font-bold">OFERTAS DO DIA</span>
+                    <span className="font-bold">OFERTAS DO DIA</span> 
+                    
+                              
+           
+              
+           
                     {showModal
                         ? <div>
 
@@ -352,20 +353,20 @@ console.log(eldata)
 
                     }
 
-   
-        
+                  
+                    <div className="h-full w-full   flex flex-wrap justify-center ">
+                        
                     {
-                        currentItens?.map((event, index) => {
+                        eldata?.map((event, index) => {
                    console.log(event)
                          
                             return (
                                     
-                                <div className=" w-60    rounded-xl mt-2  mx-1.5  inline-block      ">
+                                <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
                                         
-                                    
-
+           
                                 <Swiper2 eldata={event.productImage}/><SwiperSlide/>
-                                <div className="h-36 w-42   w-full bg-white rounded-b-xl">
+                                <div className="h-36 w-42   w-full  bg-white rounded-b-xl">
                                    
                                  
                                   
@@ -413,21 +414,16 @@ console.log(eldata)
                             )
                         })
                     }
-  <div className="">
-                  
-                  <PaginationComponent  pages={pages} setCurrentPage={setCurrentPage}/>
-                    
-              </div>
-             
-           
-                </div >
-               
-                </div>
+                
 
+                 </div>
+                 
+              <SwiperMostAcessed eldata={eldata} moreDetails={moreDetails} Swiper2={Swiper2}
+              
+              />
               
             </section >
      
-
         )
     }
 

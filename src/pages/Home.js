@@ -41,8 +41,7 @@ function Home(){
     return(
         <>
          <Header acao={activeColor}/>
-        <Main/>
-        <Brands/>
+     
        
         <Collection/>
         </>
