@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import { Outlet } from "react-router-dom"
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SwiperMostAcessed from '../components/SwiperMostAcessed';
 
 
 
@@ -40,10 +41,11 @@ function Home(){
 
     return(
         <>
-         <Header acao={activeColor}/>
-     
-       
-        <Collection/>
+    
+     <Header/>
+    
+<Collection/>
+      <Footer/>
         </>
         
     )

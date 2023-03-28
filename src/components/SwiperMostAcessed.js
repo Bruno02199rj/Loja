@@ -15,7 +15,7 @@ const SwiperMostAcessed = ({eldata,moreDetails,Swiper2}) => {
 
 
   return (
-    <Swiper className='h-[30rem] w-[30rem] lg:w-[63rem]   rounded-t-xl'
+    <Swiper className='h-[35rem] w-[30rem] lg:w-[63rem]   rounded-t-xl'
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -24,7 +24,7 @@ const SwiperMostAcessed = ({eldata,moreDetails,Swiper2}) => {
       breakpoints={{
         380: {
           // width: 576,
-          slidesPerView: 2,
+          slidesPerView: 3,
         },
         768: {
           // width: 768,
@@ -37,7 +37,7 @@ const SwiperMostAcessed = ({eldata,moreDetails,Swiper2}) => {
       onSlideChange={() => console.log('slide change')}
      >
        
-       {eldata.map((item)=><SwiperSlide>      <div className=" w-60    rounded-xl mt-2           inline-block      ">
+       {eldata.map((item)=><SwiperSlide>      <div className=" w-32 lg:w-60    rounded-xl mt-2           inline-block      ">
                                         
                                     
 

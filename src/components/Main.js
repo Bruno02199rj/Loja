@@ -7,7 +7,7 @@ const Main = () =>{
     return(
  
         <>
-        <main className="px-0 w-full  inline-block mt-4">
+        <main className="px-0 w-full  inline-block mt-12 lg:mt-2">
         <div className="  bg-gradient-to-r from-yellow-300 to-yellow-600 min-w-full h-96   ">
         <figure className="float-right mr-16 ">
         <img className="h-96 hidden md:block  " alt='imagem 1' src={elmodel}></img>

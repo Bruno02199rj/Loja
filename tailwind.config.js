@@ -2,7 +2,11 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
+ 
+    plugins: [require('flowbite/plugin')],
+  
   theme: {
     extend: { 
       zIndex:{
@@ -16,5 +20,6 @@ module.exports = {
         'figma-color': '#F4F6F5'
     }},
   },
-  plugins: [],
+
+  
 }

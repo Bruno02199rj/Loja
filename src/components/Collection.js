@@ -11,7 +11,9 @@ import Swiper from "./Swiper";
 import { SwiperSlide } from "swiper/react";
 import Swiper2 from "./SwiperCollection";
 import Footer from "./Footer";
+import Brands from "./Brands";
 import SwiperMostAcessed from "./SwiperMostAcessed";
+import Main from "./Main";
     
     
 
@@ -43,7 +45,7 @@ import SwiperMostAcessed from "./SwiperMostAcessed";
         const startIndex = currentPage * itensPerPage
         const endIndex = startIndex + itensPerPage
         const currentItens = eldata.slice(startIndex, endIndex)
-      
+        const [duplicates,setDuplicates] = useState()
 
     
 
@@ -166,17 +168,51 @@ console.log(eldata)
             console.log(getColorValue)
             
         }
+       
+        let ress = eldata.map((event)=>{
+        return event.productCategory
+        })
+        let unico = ress.filter(function(elem, index, self) {
+            return index === self.indexOf(elem);
+        });
 
-      
+        const handleFilter = (event) => {
+           eldata.map((e)=>{
+          return console.log(e.productCategory +'red')
+           })
+        }
+
         return (
            
-            <section className="      mt-10  w-full h-full   ">
+            <section className="        w-full h-full  ">
+                
+                 <div className=" h-max bg-red-200 mt-14 w-full fixed z-40 flex flex-wrap justify-center">
+                    {unico.map((event)=>{
+                   
+                        return(
+                            
+                            <p onClick={()=>handleFilter(event)} className="mx-1">{event}</p>
+                        )
+                     
+                    })}
+                   
+                     
+
+         
+
+               
+     
+                    
+                 
+
+                    </div>
+                
                                 <BsFillCartPlusFill size={30} onClick={() => modalCollection()} className='  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block' />  
                     <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900">
                        
                     </blockquote>
-                    <span className="font-bold">OFERTAS DO DIA</span> 
                     
+                    <Main/>
                               
            
               
@@ -353,12 +389,13 @@ console.log(eldata)
 
                     }
 
+                    <div className="h-max w-full flex justify-center mt-2 "><span className="font-bold">OFERTAS DO DIA</span> </div>
+                   
+                    <div className="h-full w-full  flex flex-wrap justify-center ">
                   
-                    <div className="h-full w-full   flex flex-wrap justify-center ">
-                        
                     {
                         eldata?.map((event, index) => {
-                   console.log(event)
+                   
                          
                             return (
                                     
@@ -418,9 +455,8 @@ console.log(eldata)
 
                  </div>
                  
-              <SwiperMostAcessed eldata={eldata} moreDetails={moreDetails} Swiper2={Swiper2}
-              
-              />
+         
+
               
             </section >
      
