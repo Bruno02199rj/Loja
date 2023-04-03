@@ -22,8 +22,9 @@ import Main from "./Main";
 
 
         const [sizeOpt,setSizeOpt] = useState([])
-        const [resId, setResId] = useState()
-        
+        const [elsize,setElSize] = useState([])
+        const [getColorValue, setGetColorValue] = useState([])
+        const [elColor,setElColor] = useState([])
       
         const [Cart, setCart] = useState([]);
         const [showCart, setShowCart] = useState();
@@ -33,19 +34,21 @@ import Main from "./Main";
         const [idTransaction, setIdTransaction] = useState();
         const [getDetails, setGetDetails] = useState()
         const [getInformation, setGetInformation] = useState([])
-        const [getSizeValue, setGetSizeValue] = useState()
-        const [getColorValue, setGetColorValue] = useState([])
-        const [allOptionSize, setAllOptionSize] = useState([])
+      
+      
+  
         const [transactionCode,setTransactionCode] = useState()
 
         const [eldata, setElData] = useState([])
+        const [filterItens,setFilterItens] = useState([])
+        const [booleanFilter,setBolleanFilter] = useState(false)
         const [itensPerPage, setItensPerPage] = useState(4)
         const [currentPage, setCurrentPage] = useState(0)
         const pages = Math.ceil(eldata.length / itensPerPage)
         const startIndex = currentPage * itensPerPage
         const endIndex = startIndex + itensPerPage
         const currentItens = eldata.slice(startIndex, endIndex)
-        const [duplicates,setDuplicates] = useState()
+       
 
     
 
@@ -73,7 +76,6 @@ import Main from "./Main";
 
 
 
-console.log(eldata)
 
 
 
@@ -95,16 +97,18 @@ console.log(eldata)
 
 
             Cart.push(event)
-            console.log(Cart)
-
+            sizeOpt.push(elsize)
+            getColorValue.push(elColor)
+            
             
 
+            
+            
             //setShowWarning(true)
         
 
 
         }
-
         const handleRemove = (index) => {
             const item = Cart.slice()
             item.splice(index, 1)
@@ -158,13 +162,13 @@ console.log(eldata)
 
         const handleoptsize = (item) =>{
             
-            sizeOpt.push(item)
-            
-            console.log(sizeOpt)
+           
+            setElSize(item)
+            console.log(item)
         }
-
+        
         const teste0 = (item) =>{
-            getColorValue.push(item)
+            setElColor(item)
             console.log(getColorValue)
             
         }
@@ -177,17 +181,21 @@ console.log(eldata)
         });
 
         const handleFilter = (event) => {
-           eldata.map((e)=>{
-          return console.log(e.productCategory +'red')
-           })
+         
+          let fil = eldata.filter((e)=>e.productCategory == event)
+          setFilterItens(fil)
+          setBolleanFilter(true)
         }
+
+
 
         return (
            
             <section className="        w-full h-full  ">
                 
-                 <div className=" h-max bg-red-200 mt-14 w-full fixed z-40 flex flex-wrap justify-center">
+                 <div className=" h-max bg-black py-2 text-white mt-14 w-full fixed z-40 flex flex-wrap justify-center">
                     {unico.map((event)=>{
+                       
                    
                         return(
                             
@@ -214,7 +222,7 @@ console.log(eldata)
                     
                     <Main/>
                               
-           
+                    <p onClick={()=>setShowModal(true)}>CCCCCCCCCCCC</p>
               
            
                     {showModal
@@ -230,7 +238,7 @@ console.log(eldata)
 
                                         <div className="h-max w-11/12 bg-red-200 mt-32">
 
-                                            <IoMdCloseCircle className="float-right mb-8 " onClick={() => setShowModal(false)} size={30}></IoMdCloseCircle>
+                                            <IoMdCloseCircle className=" mt-12 " onClick={() => setShowModal(false)} size={30}></IoMdCloseCircle>
                                             <h1>Carrinho</h1>
 
                                             {Cart.map((event, index) => {
@@ -294,13 +302,13 @@ console.log(eldata)
                                 <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
   
                                 <div class="fixed inset-0 z-10 overflow-y-auto">
-                                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                    <div class="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0">
 
-                                        <div className="h-max w-11/8   flex">
+                                        <div className="h-max w-max mt-20 md:flex  lg:flex">
 
-                                            <div className="h-82 w-42  ml-16 ">
+                                            <div className="h-max w-full lg:w-max  bg-gray-200  ">
                                             
-                                               <div className="h-full w-full bg-yellow-600" >
+                                               <div className="h-full   w-full " >
                                                
                                                 <Swiper   eldata={getInformation} /><SwiperSlide />
                                                
@@ -310,27 +318,25 @@ console.log(eldata)
                                             </div>
 
 
-                                            <div className="bg-white float-right h-82 w-full mr-16 pl-4 pr-4">
+                                            <div className="bg-white float-right h-82 w-full   pl-4 pr-4">
                                                 
                                                 <p className="float-right h-6 w-6 rounded-2xl bg-black text-white font-bold mt-2" onClick={() => setGetDetails(false)} >X</p>
-                                                <p className=" mt-2 text-2xl">VESTIDO CURTO EM PONTO ROMA COM VIÉS CONTRASTANTE E ETIQUETA APLICADA NA BARRA PRETO </p>
+                                                <p className=" mt-2 w-70 text-2xl"></p>
                                              
                                               
                                                <p className="text-stone-400 float-left mt-6">SKU:{getInformation._id}</p>
-
+                                                <p>{getInformation.productName}</p>    
                                                 <div className="h-8 w-44 bg-slate-400 mt-16 rounded">
                                                     <p className="text-white">em até 6x sem juros</p>
                                                 </div>
                                                 
                                                 <div className="h-12 w-full   flex">
                                                 <span className="float-left text-2xl text-yellow-500 font-bold mt-2">R${getInformation.productPrice.toFixed(2)}</span>
-                                                <div className="ml-96 float-right w-/11/12 h-max rounded-lg bg-black ">
-                                                    <p className="break-all	text-yellow-600 mx-4 my-2 text-white">{getInformation.productDescription}</p>
-                                                </div>
+                                              
                                                 
                                               </div>
                                                 
-
+                                                <div className="h-max w-76 bg-red-200"><p className="">{getInformation.productDescription}</p></div>
                                                 <div className="mt-12 w-full h-4 ">
                                                 
                                                     <span className="float-left">SELECIONAR TAMANHO</span>
@@ -378,7 +384,7 @@ console.log(eldata)
                                                     
                                                 </div>
                                                 
-                                                <div className="  w-full mt-24 mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
+                                                <div className="  w-full mt-32 mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
                                             </div>
 
                                         </div>
@@ -392,65 +398,143 @@ console.log(eldata)
                     <div className="h-max w-full flex justify-center mt-2 "><span className="font-bold">OFERTAS DO DIA</span> </div>
                    
                     <div className="h-full w-full  flex flex-wrap justify-center ">
-                  
+                  {booleanFilter?<div className="h-max w-max flex flex-wrap justify-center">
                     {
-                        eldata?.map((event, index) => {
+                    filterItens?.map((event, index) => {
                    
                          
-                            return (
-                                    
-                                <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
-                                        
-           
-                                <Swiper2 eldata={event.productImage}/><SwiperSlide/>
-                                <div className="h-36 w-42   w-full  bg-white rounded-b-xl">
-                                   
-                                 
-                                  
-                                <p className="text-stone-500 font bold  text-center ">{event.productDescription} </p>
+                   return (
+                           
+                       <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
+                               
+  
+                       <Swiper2 eldata={event.productImage}/><SwiperSlide/>
+                       <div className="h-36 w-42   w-full  bg-white rounded-b-xl">
                           
-                                <div className="h-8   w-full flex ">
-                                {event.productColor.map((item)=><div className="hover:h-4  cursor-pointer h-4 w-4 mx-1 border-solid border-1 border-black rounded-2xl " style={{  backgroundImage: `url("${item.color}")` }}></div>)}
-                                </div>
-                                {console.log(event.productColor.map((item)=>item.color))}
-                                
-                                
-                               <div className="w-full h-max">
-                               <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
-                                
-                                <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
-                                <p className="text-black font-bold mr-2">Ver</p>
-                                </div>
-                                <div>
-                                    <span className="text-black ml-2">Preço</span>
-                               
-                                </div>
-                                <span className="text-black ml-2 font-bold">R${event.productPrice}</span>
-                               </div>
-                               
                         
-                       
-                                
                          
-                                
+                       <p className="text-stone-500 font bold  text-center ">{event.productDescription} </p>
+                 
+                       <div className="h-8   w-full flex ">
+                       {event.productColor.map((item)=><div className="hover:h-4  cursor-pointer h-4 w-4 mx-1 border-solid border-1 border-black rounded-2xl " style={{  backgroundImage: `url("${item.color}")` }}></div>)}
+                       </div>
+                       {console.log(event.productColor.map((item)=>item.color))}
+                       
+                       
+                      <div className="w-full h-max">
+                      <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
+                       
+                       <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
+                       <p className="text-black font-bold mr-2">Ver</p>
+                       </div>
+                       <div>
+                           <span className="text-black ml-2">Preço</span>
+                      
+                       </div>
+                       <span className="text-black ml-2 font-bold">R${event.productPrice}</span>
+                      </div>
+                      
+               
+              
+                       
+                
+                       
+                      
+                           
+
+
+                       </div>
+
+
+
+                          
+                          
+                         
+                          
+                       </div>
+                      
+
+                   )
+               })
+
+
+
+
+
+               }   </div>
+            
+                    :<div className="h-max w-max flex flex-wrap justify-center">
+                    {
+                    eldata?.map((event, index) => {
+                   
+                         
+                   return (
+                           
+                       <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
                                
-                                    
+  
+                       <Swiper2 eldata={event.productImage}/><SwiperSlide/>
+                       <div className="h-36 w-42   w-full  bg-white rounded-b-xl">
+                          
+                        
+                         
+                       <p className="text-stone-500 font bold  text-center ">{event.productDescription} </p>
+                 
+                       <div className="h-8   w-full flex ">
+                       {event.productColor.map((item)=><div className="hover:h-4  cursor-pointer h-4 w-4 mx-1 border-solid border-1 border-black rounded-2xl " style={{  backgroundImage: `url("${item.color}")` }}></div>)}
+                       </div>
+                       {console.log(event.productColor.map((item)=>item.color))}
+                       
+                       
+                      <div className="w-full h-max">
+                      <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
+                       
+                       <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
+                       <p className="text-black font-bold mr-2">Ver</p>
+                       </div>
+                       <div>
+                           <span className="text-black ml-2">Preço</span>
+                      
+                       </div>
+                       <span className="text-black ml-2 font-bold">R${event.productPrice}</span>
+                      </div>
+                      
+               
+              
+                       
+                
+                       
+                      
+                           
 
 
-                                </div>
+                       </div>
 
 
 
-                                   
-                                   
-                                  
-                                   
-                                </div>
-                               
+                          
+                          
+                         
+                          
+                       </div>
+                      
 
-                            )
-                        })
+                   )
+               })
+
+
+
+
+
+               }   </div>}
+                    { 
+                   
+                      
+                        
                     }
+                
+
+               
                 
 
                  </div>
