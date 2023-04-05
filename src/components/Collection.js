@@ -1,8 +1,7 @@
 
     import React, { useEffect, useState } from "react";
-    import { BsFillCartPlusFill,BsCart3 } from "react-icons/bs"
-    import { IoMdCloseCircle } from "react-icons/io"
-    import { MdDeleteForever } from "react-icons/md"
+    import { BsFillCartPlusFill,BsCartFill } from "react-icons/bs"
+  
     import { FiCheck } from "react-icons/fi"
 
     import axios from "axios";
@@ -14,6 +13,8 @@ import Footer from "./Footer";
 import Brands from "./Brands";
 import SwiperMostAcessed from "./SwiperMostAcessed";
 import Main from "./Main";
+import SwiperCart from "./SwiperCart";
+
     
     
 
@@ -49,7 +50,7 @@ import Main from "./Main";
         const endIndex = startIndex + itensPerPage
         const currentItens = eldata.slice(startIndex, endIndex)
        
-
+        const [sum,setSum] = useState()
     
 
 
@@ -186,20 +187,29 @@ import Main from "./Main";
           setFilterItens(fil)
           setBolleanFilter(true)
         }
-
+        const soma =  Cart.reduce(
+            (accumulator,person)=> accumulator + person["productPrice"],0
+            )
+           {
+           
+            }
+            
+           
+        
+        
 
 
         return (
            
             <section className="        w-full h-full  ">
                 
-                 <div className=" h-max bg-black py-2 text-white mt-14 w-full fixed z-40 flex flex-wrap justify-center">
+                 <div className=" h-max border-b-2 border-black bg-white py-2 text-black mt-14 w-full fixed z-40 flex flex-wrap justify-center">
                     {unico.map((event)=>{
                        
                    
                         return(
                             
-                            <p onClick={()=>handleFilter(event)} className="mx-1">{event}</p>
+                            <p onClick={()=>handleFilter(event)} className="mx-1 text-xs hover:border-b-2 hover:border-black">{event}</p>
                         )
                      
                     })}
@@ -222,52 +232,79 @@ import Main from "./Main";
                     
                     <Main/>
                               
-                    <p onClick={()=>setShowModal(true)}>CCCCCCCCCCCC</p>
+             
               
-           
+                    <div className="h-12 w-full fixed z-50">
+                        <div onClick={()=>setShowModal(true)} className="h-12 w-12 cursor-pointer bg-gray-200 float-right p-2 rounded-full "><BsCartFill size={30}/></div>
+                    </div>
+
                     {showModal
                         ? <div>
 
 
-                            <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                            <div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
                                 <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
                                 <div class="fixed inset-0 z-10 overflow-y-auto">
-                                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                    <div class="flex min-h-full items-end justify-center p-4 text-center items-center p-0">
 
-                                        <div className="h-max w-11/12 bg-red-200 mt-32">
-
-                                            <IoMdCloseCircle className=" mt-12 " onClick={() => setShowModal(false)} size={30}></IoMdCloseCircle>
-                                            <h1>Carrinho</h1>
-
-                                            {Cart.map((event, index) => {
-                                               console.log(event.productImage)
+                                        <div className="h-max w-full mt-18  lg:flex bg-white ">
+                                            
+                                       <div className="h-max w-full      ">
+                                       {Cart.map((event, index) => {
+                                               console.log(event)
                                                 return (
-                                                    <div className="">
-                                                        <div className="w-full h-max  ">
+                                                    <div className="flex border-b-2 border-black">  
+                                                        
+                                                        <div className="w-max  h-max   ">
                                                        
-                                                            <MdDeleteForever className="float-right " onClick={(event, index) => handleRemove(event, index)} size={30}></MdDeleteForever>
-                                                          
-                                                            <div className="flex m-4">
+                                                           
                                                               
-                                                                {event.productImage.map((item)=> <img className="h-16 w-16 mr-2 " src={item.image} ></img>)}
+                                                                <SwiperCart eldata={event.productImage}/>
                                                                
-                                                                <p className=" ml-32">{event.productName}</p>
-                                                                <p className="ml-32">{event.productPrice.toFixed(2)}R$</p>
-                                                                <p>tamanho: {sizeOpt[index]}</p>
-                                                               <div className=" h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl ml-2" style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div>
-                                                              
-                                                            {console.log('swssssss')}
+                                                               
                                                             </div>
-
-
+                                                           <div className=" h-max w-max text-left">
+                                                            <span className="h-4 w-max font-bold ">{event.productName}</span>
+                                                            
+                                                            <div><span className="h-4 text-xs w-max">cod#<span className="text-slate-500">{event._id}</span></span></div>
+                                                           <span className="text-xs">vendido e entregue por Lotus Fashion</span>
+                                                          
+                                                           <div className=" h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl " style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div>
+                                                               <p className="text-sm">tamanho: <span className="text-slate-500 text-sm">{sizeOpt[index]}</span></p>
+                                                               <p className="font-bold">R${event.productPrice.toFixed(2)}</p>
+                                                               
+                                                             
+                                                           </div>
+                                                            
+                                                          
+                                                              
                                                         </div>
 
-                                                    </div>
+                                                   
                                                 )
+                                            
+                                                
                                             })}
-                                            <div className="bg-red-400 h-max w-full "><button onClick={(item, index) => handleredirect(item, index)}>comprar</button></div>
+                                            
+                                       </div>
+                                       
+                                       <div className="h-screnn flex place-items-center w-full border-b-2 border-black ">
+                                         <div className="w-full">  
+                                         <h1 className="font-bold">Resumo do pedido</h1>
+                                            <p className="text-slate-500 ">subtotal({Cart.length})</p>
+                                            
+                                            <p className="font-bold text-xl">R${soma.toFixed(2)}</p>
+                                            <span className="text-xs text-slate-500">em até 6x sem juros</span>
+                                            <div className="bg-black text-white font-bold h-max w-full "><button onClick={(item, index) => handleredirect(item, index)}>comprar</button></div>
+                                            </div>
+                                           
+                                            
+                                            
+
+                                       </div>
+                                       
 
 
                                         </div>
@@ -288,58 +325,53 @@ import Main from "./Main";
 
                     </div>
 
-                  
-
+                   
                   
 
                     {
                         getDetails ? <div>
 
 
-                            <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                            <div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
 
                                 <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
   
                                 <div class="fixed inset-0 z-10 overflow-y-auto">
-                                    <div class="flex min-h-full  items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                    <div class="flex min-h-full  items-end justify-center  text-center sm:items-center sm:p-0">
 
-                                        <div className="h-max w-max mt-20 md:flex  lg:flex">
+                                        <div className="h-max w-full  md:flex lg:flex  lg:justify-center ">
 
-                                            <div className="h-max w-full lg:w-max  bg-gray-200  ">
-                                            
-                                               <div className="h-full   w-full " >
+                                           
+                                               <div className="h-full   w-full lg:w-72 bg-gray-200  " >
                                                
                                                 <Swiper   eldata={getInformation} /><SwiperSlide />
                                                
                                                 </div>
                                                 
             
-                                            </div>
+                                         
 
 
-                                            <div className="bg-white float-right h-82 w-full   pl-4 pr-4">
-                                                
+                                            <div className="bg-white float-right h-82 w-full lg:w-[35rem]  pl-4 pr-4">
+                                            <p className="font-bold uppercase">{getInformation.productName}</p> 
                                                 <p className="float-right h-6 w-6 rounded-2xl bg-black text-white font-bold mt-2" onClick={() => setGetDetails(false)} >X</p>
                                                 <p className=" mt-2 w-70 text-2xl"></p>
                                              
                                               
-                                               <p className="text-stone-400 float-left mt-6">SKU:{getInformation._id}</p>
-                                                <p>{getInformation.productName}</p>    
-                                                <div className="h-8 w-44 bg-slate-400 mt-16 rounded">
-                                                    <p className="text-white">em até 6x sem juros</p>
-                                                </div>
+                                               <p className="text-stone-400  float-left text-sm mt-6">cod:{getInformation._id}</p>
+                                                  
                                                 
                                                 <div className="h-12 w-full   flex">
-                                                <span className="float-left text-2xl text-yellow-500 font-bold mt-2">R${getInformation.productPrice.toFixed(2)}</span>
+                                                <span className="float-left text-2xl text-black font-bold mt-2">R${getInformation.productPrice.toFixed(2)}</span>
                                               
                                                 
                                               </div>
                                                 
-                                                <div className="h-max w-76 bg-red-200"><p className="">{getInformation.productDescription}</p></div>
+                                                <p className="h-max w-96   text-center text-xs break-all">{getInformation.productDescription}dsoadsadisaid9sa9id9asi9dasi9id9asi9dasi9idas9id9asuj98udjs8aud8sua89dusa89ud8sua98duas89usda</p>
                                                 <div className="mt-12 w-full h-4 ">
                                                 
-                                                    <span className="float-left">SELECIONAR TAMANHO</span>
+                                                    <span className="float-left text-xs">Tamanho</span>
                                                                                                                   
 
                                                 </div>
@@ -353,7 +385,7 @@ import Main from "./Main";
 
                                                                 return (
                                                                    
-                                                                    <p  className=" hover:bg-sky-700 float-left border-solid border-2 border-black rounded " onClick={() => handleoptsize(sizeValue)} value={sizeValue}>{sizeValue}</p>
+                                                                    <p  className=" h-12 w-12 pt-3 text-xs hover:border-black  float-left border-solid border border-gray-200 mr-2 " onClick={() => handleoptsize(sizeValue)} value={sizeValue}>{sizeValue}</p>
                                                                     
                                                                 )
                                                                 
@@ -373,7 +405,7 @@ import Main from "./Main";
                                                        
 
                                                         return(
-                                                            <option  onClick={()=>teste0(colorValue)} value={colorValue} className="hover:h-12  cursor-pointer h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl" style={{  backgroundImage: `url("${colorValue}")` }}></option>
+                                                            <option  onClick={()=>teste0(colorValue)} value={colorValue} className="hover:border-black hover:border-2    cursor-pointer h-8 w-8 mt-2 border-solid border border-gray-200 rounded-2xl" style={{  backgroundImage: `url("${colorValue}")` }}></option>
                                                         )
                                                         })
                                                     }
@@ -384,9 +416,9 @@ import Main from "./Main";
                                                     
                                                 </div>
                                                 
-                                                <div className="  w-full mt-32 mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
+                                                <div className="  w-full mt-32  mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
                                             </div>
-
+                                                     
                                         </div>
                                     </div>
                                 </div>
@@ -395,7 +427,6 @@ import Main from "./Main";
 
                     }
 
-                    <div className="h-max w-full flex justify-center mt-2 "><span className="font-bold">OFERTAS DO DIA</span> </div>
                    
                     <div className="h-full w-full  flex flex-wrap justify-center ">
                   {booleanFilter?<div className="h-max w-max flex flex-wrap justify-center">
@@ -405,7 +436,7 @@ import Main from "./Main";
                          
                    return (
                            
-                       <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
+                       <div className=" w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
                                
   
                        <Swiper2 eldata={event.productImage}/><SwiperSlide/>
@@ -422,10 +453,10 @@ import Main from "./Main";
                        
                        
                       <div className="w-full h-max">
-                      <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
+                      <div onClick={() => moreDetails(event)} className="flex h-max cursor-pointer rounded mt-4 w-max px-4 float-right bg-black  ">  
                        
-                       <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
-                       <p className="text-black font-bold mr-2">Ver</p>
+                       
+                       <p className="text-white font-bold text-center text-sm">Ver</p>
                        </div>
                        <div>
                            <span className="text-black ml-2">Preço</span>
@@ -463,22 +494,22 @@ import Main from "./Main";
 
                }   </div>
             
-                    :<div className="h-max w-max flex flex-wrap justify-center">
+                    :<div className="h-max w-max  flex flex-wrap justify-center">
                     {
                     eldata?.map((event, index) => {
                    
                          
                    return (
                            
-                       <div className="bg-gray-100 w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
+                       <div className=" w-48 bg-gray-200 lg:w-60 h-max   mt-2  mx-1.5      ">
                                
   
                        <Swiper2 eldata={event.productImage}/><SwiperSlide/>
-                       <div className="h-36 w-42   w-full  bg-white rounded-b-xl">
+                       <div className="h-36 w-42   w-full  bg-white">
                           
                         
                          
-                       <p className="text-stone-500 font bold  text-center ">{event.productDescription} </p>
+                       <p className="text-stone-500 text-sm font bold  text-center ">{event.productDescription} </p>
                  
                        <div className="h-8   w-full flex ">
                        {event.productColor.map((item)=><div className="hover:h-4  cursor-pointer h-4 w-4 mx-1 border-solid border-1 border-black rounded-2xl " style={{  backgroundImage: `url("${item.color}")` }}></div>)}
@@ -487,16 +518,16 @@ import Main from "./Main";
                        
                        
                       <div className="w-full h-max">
-                      <div onClick={() => moreDetails(event)} className="flex h-6 cursor-pointer rounded-xl mt-2 w-max float-right bg-gradient-to-r from-yellow-300 to-yellow-600 mr-2">  
+                      <div onClick={() => moreDetails(event)} className="flex h-max cursor-pointer rounded mt-4 w-max float-right  text-center  px-4 bg-black">  
                        
-                       <BsCart3 className="mx-2 my-1 text-black" ></BsCart3>
-                       <p className="text-black font-bold mr-2">Ver</p>
+                       
+                       <p className="text-white text-sm font-bold  text-sm">Ver</p>
                        </div>
                        <div>
-                           <span className="text-black ml-2">Preço</span>
+                           <span className="text-black ml-2 text-sm">Preço</span>
                       
                        </div>
-                       <span className="text-black ml-2 font-bold">R${event.productPrice}</span>
+                       <span className="text-black ml-2 text-sm font-bold">R${event.productPrice}</span>
                       </div>
                       
                
@@ -527,11 +558,8 @@ import Main from "./Main";
 
 
                }   </div>}
-                    { 
-                   
-                      
-                        
-                    }
+                  
+                  
                 
 
                

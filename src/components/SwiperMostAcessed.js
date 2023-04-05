@@ -37,7 +37,7 @@ const SwiperMostAcessed = ({eldata,moreDetails,Swiper2}) => {
       onSlideChange={() => console.log('slide change')}
      >
        
-       {eldata.map((item)=><SwiperSlide>      <div className=" w-32 lg:w-60    rounded-xl mt-2           inline-block      ">
+       {eldata.map((item)=><SwiperSlide>      <div className=" w-32 lg:w-60    rounded-xl mt-2               ">
                                         
                                     
 

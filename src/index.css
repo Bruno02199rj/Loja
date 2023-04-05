@@ -10,11 +10,11 @@
 }
 
 :root {
-  --swiper-navigation-color: #E49A38;
-  --swiper-pagination-color: #E49A38;
+  --swiper-navigation-color: #eeeee4;
+  --swiper-pagination-color: #ccc;
 }
 .cor{
-  background-color: #fef8f1
+  background-color: #fef8f1c5
 
 }
 
