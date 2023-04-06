@@ -14,6 +14,7 @@ import Brands from "./Brands";
 import SwiperMostAcessed from "./SwiperMostAcessed";
 import Main from "./Main";
 import SwiperCart from "./SwiperCart";
+import ConsultaCorreios from "./ConsultaCorreios";
 
     
     
@@ -104,7 +105,7 @@ import SwiperCart from "./SwiperCart";
             
 
             
-            
+            setGetDetails(false)
             //setShowWarning(true)
         
 
@@ -204,15 +205,7 @@ import SwiperCart from "./SwiperCart";
             <section className="        w-full h-full  ">
                 
                  <div className=" h-max border-b-2 border-black bg-white py-2 text-black mt-14 w-full fixed z-40 flex flex-wrap justify-center">
-                    {unico.map((event)=>{
-                       
                    
-                        return(
-                            
-                            <p onClick={()=>handleFilter(event)} className="mx-1 text-xs hover:border-b-2 hover:border-black">{event}</p>
-                        )
-                     
-                    })}
                    
                      
 
@@ -252,6 +245,7 @@ import SwiperCart from "./SwiperCart";
                                         <div className="h-max w-full mt-18  lg:flex bg-white ">
                                             
                                        <div className="h-max w-full      ">
+                                        <div className="h-max w-full flex flex-row-reverse   cursor-pointer"><span className="float-right h-6 w-6 rounded-2xl relative  bg-black text-white font-bold mt-2" onClick={()=>setShowModal(false)}>X</span></div>
                                        {Cart.map((event, index) => {
                                                console.log(event)
                                                 return (
@@ -264,14 +258,14 @@ import SwiperCart from "./SwiperCart";
                                                                 <SwiperCart eldata={event.productImage}/>
                                                                
                                                                
-                                                            </div>
-                                                           <div className=" h-max w-max text-left">
+                                                            </div> 
+                                                           <div className=" h-max w-full  justify-center ">
                                                             <span className="h-4 w-max font-bold ">{event.productName}</span>
                                                             
                                                             <div><span className="h-4 text-xs w-max">cod#<span className="text-slate-500">{event._id}</span></span></div>
                                                            <span className="text-xs">vendido e entregue por Lotus Fashion</span>
+                                                            <div className="h-max w-full flex justify-center"> <div className=" h-8 w-8 mt-2 border-solid border-2 justify-center border-black rounded-2xl " style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div></div>
                                                           
-                                                           <div className=" h-8 w-8 mt-2 border-solid border-2 border-black rounded-2xl " style={{  backgroundImage: `url("${getColorValue[index]}")` }}></div>
                                                                <p className="text-sm">tamanho: <span className="text-slate-500 text-sm">{sizeOpt[index]}</span></p>
                                                                <p className="font-bold">R${event.productPrice.toFixed(2)}</p>
                                                                
@@ -342,7 +336,7 @@ import SwiperCart from "./SwiperCart";
 
                                         <div className="h-max w-full  md:flex lg:flex  lg:justify-center ">
 
-                                           
+                                             
                                                <div className="h-full   w-full lg:w-72 bg-gray-200  " >
                                                
                                                 <Swiper   eldata={getInformation} /><SwiperSlide />
@@ -351,14 +345,15 @@ import SwiperCart from "./SwiperCart";
                                                 
             
                                          
-
+                                               
 
                                             <div className="bg-white float-right h-82 w-full lg:w-[35rem]  pl-4 pr-4">
                                             <p className="font-bold uppercase">{getInformation.productName}</p> 
+                                           
                                                 <p className="float-right h-6 w-6 rounded-2xl bg-black text-white font-bold mt-2" onClick={() => setGetDetails(false)} >X</p>
                                                 <p className=" mt-2 w-70 text-2xl"></p>
                                              
-                                              
+                                               
                                                <p className="text-stone-400  float-left text-sm mt-6">cod:{getInformation._id}</p>
                                                   
                                                 
@@ -367,16 +362,18 @@ import SwiperCart from "./SwiperCart";
                                               
                                                 
                                               </div>
-                                                
+                                              
                                                 <p className="h-max w-96   text-center text-xs break-all">{getInformation.productDescription}dsoadsadisaid9sa9id9asi9dasi9id9asi9dasi9idas9id9asuj98udjs8aud8sua89dusa89ud8sua98duas89usda</p>
-                                                <div className="mt-12 w-full h-4 ">
+                                               
                                                 
+                                                <div className="mt-12 w-full h-4 ">
+                                                <div className="h-4 w-full "><div className="h-max w-max float-right "><ConsultaCorreios/></div></div>
                                                     <span className="float-left text-xs">Tamanho</span>
                                                                                                                   
 
                                                 </div>
-                                               
-                                                <div className=" w-full  mt-4">
+                                                
+                                                <div className=" w-full h-max  mt-4">
                                                 {getInformation.productSize.map((item, index) => {
                                                                 var sizeValue =  getInformation.productSize[index].size  
                                                                
@@ -392,9 +389,14 @@ import SwiperCart from "./SwiperCart";
                                                             })}
                                                   
                                                 </div>
+                                                
                                                 <div className=" w-full float-left flex ">
+                                                   
                                                     <div className="">
+                                                       
+                                                                               
                                                         <form className="flex">
+                                                        
                                                     
 
                                                         
@@ -402,24 +404,32 @@ import SwiperCart from "./SwiperCart";
                                                         getInformation.productColor?.map((item,index)=>{
                                                         
                                                         var colorValue = getInformation.productColor[index].color
-                                                       
+                                                            
 
                                                         return(
-                                                            <option  onClick={()=>teste0(colorValue)} value={colorValue} className="hover:border-black hover:border-2    cursor-pointer h-8 w-8 mt-2 border-solid border border-gray-200 rounded-2xl" style={{  backgroundImage: `url("${colorValue}")` }}></option>
+                                                            <option  onClick={()=>teste0(colorValue)} value={colorValue} className="hover:border-black hover:border-2    cursor-pointer h-8 w-8 mt-2 mb-4 border-solid border border-gray-200 rounded-2xl" style={{  backgroundImage: `url("${colorValue}")` }}></option>
                                                         )
                                                         })
                                                     }
-                                                    </form>
-                                                    </div>
-                                                
-                                                
                                                     
+                                                    </form>
+                                                                  
+                                                    </div> 
+                                                
+                                                   
+                                                  
+                                                        
+                                                       
+                                                  
+                                                  
                                                 </div>
                                                 
-                                                <div className="  w-full mt-32  mb-4"><span className="py-4 px-4  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
+                                                <div className="  w-full mt-32 lg:mt-40  mb-4"><span className="lg:py-4 lg:px-4 p-1  w-32 bg-black text-white font-bold cursor-pointer" onClick={() => handleCart(getInformation)}>Adicionar ao carrinho</span></div>
+                                                
                                             </div>
                                                      
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -501,7 +511,7 @@ import SwiperCart from "./SwiperCart";
                          
                    return (
                            
-                       <div className=" w-48 bg-gray-200 lg:w-60 h-max   mt-2  mx-1.5      ">
+                       <div className=" w-40 md:w-48 bg-gray-200 lg:w-60 h-max   mt-2  mx-0.5 md:mx-1 lg:mx-1.5      ">
                                
   
                        <Swiper2 eldata={event.productImage}/><SwiperSlide/>
