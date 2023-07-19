@@ -8,7 +8,7 @@ const Main = () =>{
     return(
  
         <>
-        <main className="px-0 w-full h-full inline-block mt-4 lg:mt-2 ">
+        <main className="   w-full h-full inline-block mt-4 lg:mt-2 ">
            <SwiperMain/> 
       
         </main>

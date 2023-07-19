@@ -17,7 +17,7 @@ const Swiper2 = ({eldata}) => {
 
 
   return (
-    <Swiper className='   '
+    <Swiper className='  bg-[#F5F5F4] rounded-md'
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -35,7 +35,7 @@ const Swiper2 = ({eldata}) => {
      >
        
        {eldata.map((item)=><SwiperSlide    style={{ backgroundImage: `url("${item.image}")`
-         ,height: 330,
+         ,height: 180,
          width:300 ,
          backgroundPosition: 'center', 
          backgroundSize: 'cover',

@@ -18,27 +18,6 @@ var baseUrl = 'http://localhost:3001'
 
 
 function Home(){
-
-    const [activeColor, setActiveColor] = useState()
-
-
-   
-      useEffect(() => {
-       
-        function ScrollPosition(){
-        if(window.screenY <= 30){
-            console.log(window.screenY)
-        setActiveColor(true)
-
-       }else if(window.screenY = 0 ){
-        
-        setActiveColor(false)
-       } 
-    }
-       window.addEventListener('scroll',ScrollPosition)
-      }, []);  
-
-
     return(
         <>
     
