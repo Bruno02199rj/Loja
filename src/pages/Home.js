@@ -22,7 +22,7 @@ function Home(){
         <>
     
      <Header/>
-    
+    <Main/>
 <Collection/>
       <Footer/>
         </>

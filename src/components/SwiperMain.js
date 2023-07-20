@@ -34,12 +34,7 @@ const SwiperMain = () => {
       
      >
        
-       <SwiperSlide    style={{ backgroundImage: `url("https://img.lojasrenner.com.br/banner/01-home/P01_230404_HOME_CARROSSEL_NOVIDADES_MOB_FEMININO.jpg")`
-         ,height: 450,
-         width:300 ,
-         backgroundPosition: 'center', 
-         backgroundSize: 'cover',
-         backgroundRepeat: 'no-repeat'}}></SwiperSlide>
+     
            <SwiperSlide    style={{ backgroundImage: `url("https://img.ltwebstatic.com/images3_ccc/2023/04/03/1680502713c0cc964d0b51664b73cdee3f85f41fd1_thumbnail_1920x.jpg")`
          ,height: 450,
          width:300 ,

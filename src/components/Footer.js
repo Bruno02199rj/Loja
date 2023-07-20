@@ -8,9 +8,14 @@ const Footer = () =>{
 
     return (
 <div className="h-72 w-full bg-black ">
-<div className="h-48 w-full mt-12 bg-black inline-block"><p className="text-white bold text-xl mt-8">FASHION</p>
-<p className="text-white mt-8">Complete your style with awesome clothes from us.</p>
-<div className="flex mt-12">
+  
+<div className="h-48  w-full mt-12  inline-block">
+<div className='h-12 w-full  flex justify-center  '>
+
+
+<p className="text-white mb-12 ">Complete your style with awesome clothes from us.</p>
+</div>
+<div className="flex justify-center mt-12">
 
 <div className="h-8 w-8 mr-2 bg-yellow-400 rounded-md"><TiSocialFacebook size={30}/></div>
 <div className="h-8 w-8 mx-2 bg-yellow-400  rounded-md"><AiOutlineInstagram size={30}/></div>

@@ -21,7 +21,7 @@ const Swiper2 = ({eldata}) => {
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={50}
+      spaceBetween={25}
       slidesPerView={1}
       navigation
       

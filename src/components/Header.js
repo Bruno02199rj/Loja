@@ -8,10 +8,10 @@ const Header = () => {
 
   return (
     <div className="h-max w-full  fixed z-50">
-      <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+      <nav class="bg-white border-gray-200  py-2  dark:bg-gray-900">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="https://flowbite.com/" class="flex items-center">
-            <span class="h-max w-max bg-white self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span class="h-max ml-4 w-max bg-white self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Lotus Fashion
             </span>
           </a>
@@ -19,7 +19,7 @@ const Header = () => {
             onClick={() => setToggle((prevCheck) => !prevCheck)}
             data-collapse-toggle="navbar-default"
             type="button"
-            class="inline-flex  items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            class="inline-flex  items-center p-2  text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
             aria-expanded="false"
           >
@@ -88,28 +88,28 @@ const Header = () => {
             <div className="flex hidden lg:inline-flex md:inline-flex w-max ">
               <a
                 href="#"
-                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-blue-700 hover:text-white  rounded dark:text-white"
+                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-black hover:text-white  rounded dark:text-white"
                 aria-current="page"
               >
                 Home
               </a>
               <a
                 href="#"
-                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-blue-700 hover:text-white  rounded dark:text-white"
+                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-black hover:text-white  rounded dark:text-white"
                 aria-current="page"
               >
                 Contato
               </a>
               <a
                 href="#"
-                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-blue-700 hover:text-white  rounded dark:text-white"
+                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-black hover:text-white  rounded dark:text-white"
                 aria-current="page"
               >
                 Home
               </a>
               <a
                 href="#"
-                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-blue-700 hover:text-white  rounded dark:text-white"
+                class="block mx-2 py-2 pl-3 pr-4 text-black hover:bg-black hover:text-white  rounded dark:text-white"
                 aria-current="page"
               >
                 Home

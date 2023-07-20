@@ -17,7 +17,7 @@ const SwiperCart = ({eldata}) => {
 
 
   return (
-    <Swiper className='  w-48   bg-[#F5F5F4] rounded-md  '
+    <Swiper className='  w-48   bg-[#E2E2E2] rounded-md  '
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -36,7 +36,7 @@ const SwiperCart = ({eldata}) => {
        
        {eldata.map((item)=><SwiperSlide    style={{ backgroundImage: `url("${item.image}")`
          ,height: 150,
-         width:300 ,
+         width:80 ,
          backgroundPosition: 'center', 
          backgroundSize: 'cover',
          backgroundRepeat: 'no-repeat'}}></SwiperSlide>)}

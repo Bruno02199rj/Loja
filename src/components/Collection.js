@@ -37,7 +37,7 @@ const Collection = () => {
 
   const [eldata, setElData] = useState([]);
   const [filterItens, setFilterItens] = useState([]);
-  const [booleanFilter, setBolleanFilter] = useState(false);
+  const [booleanFilter, setBolleanFilter] = useState();
   const [itensPerPage, setItensPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = Math.ceil(eldata.length / itensPerPage);
@@ -147,38 +147,54 @@ const Collection = () => {
 
   const handleFilter = (event) => {
     let fil = eldata.filter((e) => e.productCategory == event);
+    console.log(fil)
     setFilterItens(fil);
     setBolleanFilter(true);
   };
+ 
   const soma = Cart.reduce(
     (accumulator, person) => accumulator + person["productPrice"],
     0
   );
-  {
-  }
+  
 
   return (
-    <section className="        w-full h-full  ">
-      <div className=" h-max border-b-2 border-black bg-white py-2 text-black mt-14 w-full fixed z-40 flex flex-wrap justify-center"></div>
-
-      <BsFillCartPlusFill
-        size={30}
-        onClick={() => modalCollection()}
-        className="  hover:bg-gray-300 hover:text-black hover:animate-bounce ease-in duration-300 rounded-md h-7 block"
-      />
+    <section className="        w-full h-max  ">
+     
+    
+    
       <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900"></blockquote>
 
 
+      <div className=" h-max   w-full mb-12 z-40 flex flex-wrap justify-center">
+                    {unico.map((event)=>{
+                   
+                        return(
+                            
+                            <p onClick={()=>handleFilter(event)} className="mx-1 uppercase hover:bg-black hover:text-white p-2">{event}</p>
+                        )
+                     
+                    })}
+                   
+                     
 
-      <div className="h-12 w-full fixed z-50">
+         
+
+               
+     
+                    
+                 
+
+                    </div>
+      <div className="h-12 w-full mt-[30rem] fixed z-50">
         <div
           onClick={() => setShowModal(true)}
-          className="h-12 w-12 cursor-pointer bg-gray-200 float-right p-2 rounded-full "
+          className="h-12 w-12  cursor-pointer bg-gray-200 float-right p-2 rounded-full "
         >
           <BsCartFill size={30} />
         </div>
       </div>
-
+      
       {showModal ? (
         <div>
           <div
@@ -193,11 +209,9 @@ const Collection = () => {
               
               <div class="flex  min-h-full  items-end justify-center p-4 text-center items-center p-0">
               
-                <div className="h-full  w-full    bg-white ">
+                <div className="min-h-full  w-full    bg-white ">
 
-
-                  <div className="h-max  w-full      ">
-                 <div className="h-max z-50 flex px-4  w-full bg-white fixed ">
+       <div className="h-max z-50 flex px-6  w-full bg-white fixed ">
                   <img
                   src={seta}
                       className=" h-6  w-6 rounded-2xl   font-bold mt-2"
@@ -210,11 +224,13 @@ const Collection = () => {
                   
                   
                   </div>
+                  <div className="h-max  w-full      ">
+          
                     {Cart.map((event, index) => {
                       console.log(event);
                       return (
-                        <div className=" flex justify-center text-start     ">
-                          <div className="h-max p-[1rem] flex bg-[#F2F2F2] mb-4 rounded-md">
+                        <div className="  flex justify-center text-start     ">
+                          <div className="h-max mx-8 mt-12  p-[1rem] w-full flex bg-[#F2F2F2] mb-4 rounded-md">
                           <div className="w-max  h-max   ">
                             <SwiperCart eldata={event.productImage} />
                           </div>
@@ -232,18 +248,14 @@ const Collection = () => {
                             
                             </div>
                             
-                            <span className="ml-4  text-xs">
-                              vendido e entregue por Lotus Fashion
-                            </span>
-                        
+                  
 
-                            <p className="ml-4 mt-8 text-sm">
-                              tamanho:{" "}
-                              <span className="text-slate-500 text-sm">
+                              <span className="text-slate-500 ml-4 text-sm">
                                 {sizeOpt[index]}
+                           
                               </span>
-                            </p>
-                            <p className="ml-4 font-bold">
+                            
+                            <p className="ml-4 mt-14 font-bold">
                               R${event.productPrice.toFixed(2)}
                             </p>
                           </div>
@@ -254,15 +266,15 @@ const Collection = () => {
                     })}
                   </div>
 
-                  <div className="   h-max w-full ">
+                  <div className="   h-max w-full  ">
                     <div className="flex w-full justify-center h-[4rem]   ">
-                      <div className="h-12  w-[24rem] align-center">
+                      <div className="h-12 ml-8 w-full align-center">
                   
                      
                       <p className="text-slate-500 text-start ">subtotal</p>
                       </div>
                     
-                      <p className="text-end font-bold"> R${soma.toFixed(2)}</p>
+                      <p className="text-end mr-8 font-bold"> R${soma.toFixed(2)}</p>
                   
 
                      
@@ -271,13 +283,13 @@ const Collection = () => {
                   </div>
                   <div className="   h-max w-full  ">
                     <div className="flex w-full justify-center h-[4rem]   ">
-                      <div className="h-12  w-[24rem] align-center">
+                      <div className="h-12  w-full ml-8 align-center">
                   
                      
-                      <p className="text-slate-500 text-start ">Frete</p>
+                      <p className="text-slate-500 text-start ">Total</p>
                       </div>
                     
-                      <p className="text-end font-bold"> R${soma.toFixed(2)}</p>
+                      <p className="text-end font-bold mr-8"> R${soma.toFixed(2)}</p>
                   
 
                      
@@ -285,8 +297,8 @@ const Collection = () => {
                     </div>
                   </div>
                   <div className="   h-max w-full  border-t border-black  ">
-                    <div className="flex w-full  justify-center h-[4rem]   ">
-                      <div className="flex justify-center rounded-md mt-2 h-12 bg-black text-white w-[24rem] align-center">
+                    <div className="flex w-full  justify-center h-[5rem]   ">
+                      <div className="flex justify-center rounded-md mt-4 h-12 bg-black text-white w-full mx-8 align-center">
                   
                      
                       <p className=" mt-3">Finalizar Compra</p><img className="h-4 mt-4 ml-4 w-4" src={asset}/>
@@ -308,13 +320,7 @@ const Collection = () => {
         <p></p>
       )}
 
-      <div className=" w-max h-max float-right  ">
-        {showWarning ? (
-          <FiCheck className="animate-bounce h-14 w-14" />
-        ) : (
-          <p></p>
-        )}
-      </div>
+   
 
       {getDetails ? (
         <div>
@@ -326,13 +332,13 @@ const Collection = () => {
           >
             <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
-            <div class="fixed inset-0 z-10 overflow-y-auto lg:overflow-hidden">
-              <div class="flex min-h-full  items-end justify-center  text-center sm:items-center sm:p-0">
+            <div class="fixed inset-0 z-10 overflow-y-auto ">
+              <div class="flex h-full  items-end justify-center  text-center sm:items-center sm:p-0">
                 
-                <div className=" w-full  md:flex    ">
+                <div className=" w-full h-full  ">
                  
-                  <div className="h-[28rem]   w-full  bg-white  ">
-                  <div className="h-12 z-50 flex px-4  w-full bg-white fixed lg:absolute">
+                  <div className=" h-max w-full bg-[#F5F5F5] ">
+                  <div className="h-12  z-50 flex px-4  w-full bg-white fixed  ">
                   <img
                   src={seta}
                       className=" h-6  w-6 rounded-2xl   font-bold mt-2"
@@ -349,47 +355,39 @@ const Collection = () => {
                     <SwiperSlide />
                   </div>
 
-                  <div className="h-24 w-full md:w-max md:hidden md:m-0 md:bg-red-800 md:border-0 fixed mt-[15rem] pt-2 flex border-t-2  md:px-0 px-4 border-black bg-white">
+                  <div className="h-12 w-full  md:border-0  pt-2 flex border-t-2  px-4 border-black bg-white">
                   <div className="h-12 text-start 	  w-24 ">
-                    <p className="text-slate-600 ">Price</p>
+                    <p className="text-slate-600 ">Preço</p>
+                    
                     <p className="font-bold  text-2xl">R${getInformation.productPrice.toFixed(2)}</p>
                   </div>
-                    <div className="  w-full mt-2  lg:mt-40  mb-4">
-                   
-                      <span
-                        className="lg:py-4 lg:px-4 p-2 float-right w-42 bg-black text-white font-bold cursor-pointer"
-                        onClick={() => handleCart(getInformation)}
-                      >
-                        Adicionar ao carrinho
-                      </span>
-                   
                  
-                    </div>
                   </div>
 
-                  <div className="bg-white aling-center float-right h-[28rem] w-full  pl-4 pr-4">
+                  <div className="bg-white aling-center float-right h-max w-full  pl-4 pr-4">
                  
 
                  
                     <p className=" mt-2 w-70 text-2xl"></p>
 
-                    <p className="text-stone-400  float-left text-sm mt-6">
-                      cod:{getInformation._id}
-                    </p>
-
-                    <div className="h-12 w-full   flex">
+                    <p className="text-black   float-left text-sm mt-6">
                     <p className="font-bold uppercase">
                       {getInformation.productName} 
                     </p>
+                    
+                    </p>
+
+                    <div className="h-12 text-[#CFCFCF] w-full   flex">
+                    cod:{getInformation._id}  
                     </div>
 
-                    <p className="h-max w-96    text-start mb-4 text-slate-500 text-md break-all">
+                    <p className="h-max w-96    text-start mb-4 text-[#7C7C7C] text-md break-all">
                       {getInformation.productDescription}
-                      dsoadsadisaid9sa9id9asi9dasi9id9asi9dasi9idas9id9asuj98udjs8aud8sua89dusa89ud8sua98duas89usda
+                      
                     </p>
 
                     <div className="  w-full h-4 ">
-                      <span className="float-left text-lg font-bold">Tamanho</span>
+                      <span className="float-left text-lg font-bold">Tamanho </span>
                     </div>
 
                     <div className=" w-full h-max  mt-4
@@ -401,7 +399,7 @@ const Collection = () => {
 
                         return (
                           <p
-                            className=" h-12 w-12 pt-2 hover:border-2 hover:border-black text-xs font-bold text-lg  float-left border-solid border border-2 rounded-md border-slate-400 mr-2 "
+                            className=" h-10 w-10 p-2 hover:border-2 hover:border-black text-xs font-bold text-lg  float-left border-solid border border-2 border-black-800   mr-2 "
                             onClick={() => handleoptsize(sizeValue)}
                             value={sizeValue}
                           >
@@ -410,18 +408,18 @@ const Collection = () => {
                         );
                       })}
                     </div>
-
-                    <div className=" w-full float-left flex ">
-                      <div className=" h-max mt-[5rem] hidden  md:block w-max">
-                      <span
-                        className="lg:py-4 lg:px-4 p-2 float-right w-42 bg-black text-white font-bold cursor-pointer"
-                        onClick={() => handleCart(getInformation)}
-                      >
-                        Adicionar ao carrinho
-                      </span>
+                    <div className="h-32  w-full "></div>
+                    <div className="  w-full mt-2 flex justify-center mb-4">
                    
-                      </div>
-                    </div>
+                   <span
+                     className=" p-2 float-right w-full bg-black text-white font-bold rounded-md cursor-pointer"
+                     onClick={() => handleCart(getInformation)}
+                   >
+                     Adicionar ao carrinho
+                   </span>
+                
+              
+                 </div>
                   </div>
                 </div>
               </div>
@@ -437,29 +435,26 @@ const Collection = () => {
           <div className="h-max w-max flex px-4 flex-wrap justify-center">
             {filterItens?.map((event, index) => {
               return (
-                <div className=" w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
+                <div  onClick={() => moreDetails(event)} className=" w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
-                  <div className="h-36 w-42  flex w-full  bg-white rounded-b-xl">
-                    <p className="text-stone-500 font bold  text-center ">
-                      {event.productDescription}{" "}
-                    </p>
-
-                 
+                  <div className="h-36 w-42  w-full  bg-white rounded-b-xl">
+                  
 
                     <div className="w-full h-max">
                       <div
-                        onClick={() => moreDetails(event)}
+                       
                         className="flex h-max cursor-pointer rounded  w-max px-4 float-right bg-black  "
                       >
-                        <p className="text-white font-bold text-center text-sm">
-                          Ver
-                        </p>
+                    
                       </div>
-                      <div>
-                        <span className="text-black ml-2">Preço</span>
+                      <div>  <p className="text-stone-500 font bold  text-start ">
+                      {event.productName}{" "}
+                    </p>
+
+                 
                       </div>
-                      <span className="text-black ml-2 font-bold">
+                      <span className="text-black font-bold">
                         R${event.productPrice}
                       </span>
                     </div>
@@ -469,10 +464,10 @@ const Collection = () => {
             })}
           </div>
         ) : (
-          <div className="h-max w-max  flex flex-wrap justify-center">
+          <div className="h-max w-full   flex justify-center flex-wrap ">
             {eldata?.map((event, index) => {
               return (
-                <div   onClick={() => moreDetails(event)} className=" w-40 md:w-48   lg:w-60 h-max   mt-2  mx-1 md:mx-1 lg:mx-1.5      ">
+                <div   onClick={() => moreDetails(event)} className=" w-32  mx-4  h-full   mt-2  mx-1     ">
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
                   <div className=" w-42   w-full   bg-white">
