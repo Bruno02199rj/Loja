@@ -14,7 +14,7 @@ export default ({eldata}) => {
 console.log(eldata.productImage.map((item)=>item.image))
 
   return (
-    <Swiper className='  md:w-60 lg:w-60  rounded-t-xl'
+    <Swiper className='  md:w-60   rounded-t-xl'
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}

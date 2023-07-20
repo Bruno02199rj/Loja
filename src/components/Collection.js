@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsFillCartPlusFill, BsCartFill } from "react-icons/bs";
+import asset from '../assets/Icon.png'
 
 import { FiCheck } from "react-icons/fi";
 
@@ -46,6 +47,9 @@ const Collection = () => {
 
   const [sum, setSum] = useState();
 
+
+
+
   useEffect(() => {
     axios.get("/products").then((res) => {
       setElData(res.data);
@@ -53,7 +57,7 @@ const Collection = () => {
   }, []);
 
   console.log(Cart);
-  console.log(elres);
+  console.log(sizeOpt);
 
   const modalCollection = () => {
     setShowCart(true);
@@ -186,81 +190,113 @@ const Collection = () => {
             <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
             <div class="fixed inset-0 z-10 overflow-y-auto">
-              <div class="flex min-h-full items-end justify-center p-4 text-center items-center p-0">
-                <div className="h-max w-full mt-18  lg:flex bg-white ">
-                  <div className="h-max w-full      ">
-                    <div className="h-max w-full flex flex-row-reverse   cursor-pointer">
-                      <span
-                        className="float-right h-6 w-6 rounded-2xl relative  bg-black text-white font-bold mt-2"
-                        onClick={() => setShowModal(false)}
-                      >
-                        X
-                      </span>
-                    </div>
+              
+              <div class="flex  min-h-full  items-end justify-center p-4 text-center items-center p-0">
+              
+                <div className="h-full  w-full    bg-white ">
+
+
+                  <div className="h-max  w-full      ">
+                 <div className="h-max z-50 flex px-4  w-full bg-white fixed ">
+                  <img
+                  src={seta}
+                      className=" h-6  w-6 rounded-2xl   font-bold mt-2"
+                      onClick={() => setShowModal(false)}
+                    />
+                
+                   
+                    <p className="flex-1  mt-2 font-bold text-lg">Carrinho</p>
+                   
+                  
+                  
+                  </div>
                     {Cart.map((event, index) => {
                       console.log(event);
                       return (
-                        <div className="flex border-b-2 border-black">
+                        <div className=" flex justify-center text-start     ">
+                          <div className="h-max p-[1rem] flex bg-[#F2F2F2] mb-4 rounded-md">
                           <div className="w-max  h-max   ">
                             <SwiperCart eldata={event.productImage} />
                           </div>
-                          <div className=" h-max w-full  justify-center ">
+  
+                            <div className="">
+                            <div className=" h-max   w-full  text-start ml-4 ">
                             <span className="h-4 w-max font-bold ">
                               {event.productName}
                             </span>
-
-                            <div>
-                              <span className="h-4 text-xs w-max">
-                                cod#
-                                <span className="text-slate-500">
+                            <br/>  
+                              
+                                <span className="text-sm text-slate-500">
                                   {event._id}
                                 </span>
-                              </span>
+                            
                             </div>
-                            <span className="text-xs">
+                            
+                            <span className="ml-4  text-xs">
                               vendido e entregue por Lotus Fashion
                             </span>
-                            <div className="h-max w-full flex justify-center">
-                              {" "}
-                              <div
-                                className=" h-8 w-8 mt-2 border-solid border-2 justify-center border-black rounded-2xl "
-                                style={{
-                                  backgroundImage: `url("${getColorValue[index]}")`,
-                                }}
-                              ></div>
-                            </div>
+                        
 
-                            <p className="text-sm">
+                            <p className="ml-4 mt-8 text-sm">
                               tamanho:{" "}
                               <span className="text-slate-500 text-sm">
                                 {sizeOpt[index]}
                               </span>
                             </p>
-                            <p className="font-bold">
+                            <p className="ml-4 font-bold">
                               R${event.productPrice.toFixed(2)}
                             </p>
                           </div>
                         </div>
+                        </div>
                       );
+                      
                     })}
                   </div>
 
-                  <div className="h-screnn flex place-items-center w-full border-b-2 border-black ">
-                    <div className="w-full">
-                      <h1 className="font-bold">Resumo do pedido</h1>
-                      <p className="text-slate-500 ">subtotal({Cart.length})</p>
-
-                      <p className="font-bold text-xl">R${soma.toFixed(2)}</p>
-                      <span className="text-xs text-slate-500">
-                        em até 6x sem juros
-                      </span>
-                      <div className="bg-black text-white font-bold h-max w-full ">
-                        <button
-                          onClick={(item, index) => handleredirect(item, index)}
-                        >
-                          comprar
-                        </button>
+                  <div className="   h-max w-full ">
+                    <div className="flex w-full justify-center h-[4rem]   ">
+                      <div className="h-12  w-[24rem] align-center">
+                  
+                     
+                      <p className="text-slate-500 text-start ">subtotal</p>
                       </div>
+                    
+                      <p className="text-end font-bold"> R${soma.toFixed(2)}</p>
+                  
+
+                     
+                  
+                    </div>
+                  </div>
+                  <div className="   h-max w-full  ">
+                    <div className="flex w-full justify-center h-[4rem]   ">
+                      <div className="h-12  w-[24rem] align-center">
+                  
+                     
+                      <p className="text-slate-500 text-start ">Frete</p>
+                      </div>
+                    
+                      <p className="text-end font-bold"> R${soma.toFixed(2)}</p>
+                  
+
+                     
+                  
+                    </div>
+                  </div>
+                  <div className="   h-max w-full  border-t border-black  ">
+                    <div className="flex w-full  justify-center h-[4rem]   ">
+                      <div className="flex justify-center rounded-md mt-2 h-12 bg-black text-white w-[24rem] align-center">
+                  
+                     
+                      <p className=" mt-3">Finalizar Compra</p><img className="h-4 mt-4 ml-4 w-4" src={asset}/>
+                      </div>
+                    
+                    
+                  
+
+                     
+                  
                     </div>
                   </div>
                 </div>
@@ -290,13 +326,13 @@ const Collection = () => {
           >
             <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
-            <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="fixed inset-0 z-10 overflow-y-auto lg:overflow-hidden">
               <div class="flex min-h-full  items-end justify-center  text-center sm:items-center sm:p-0">
                 
-                <div className=" w-full  md:flex   lg:justify-center ">
+                <div className=" w-full  md:flex    ">
                  
-                  <div className="h-full   w-full lg:w-72 bg-white  ">
-                  <div className="h-12 z-50 flex px-4  w-full bg-white fixed">
+                  <div className="h-[28rem]   w-full  bg-white  ">
+                  <div className="h-12 z-50 flex px-4  w-full bg-white fixed lg:absolute">
                   <img
                   src={seta}
                       className=" h-6  w-6 rounded-2xl   font-bold mt-2"
@@ -313,7 +349,7 @@ const Collection = () => {
                     <SwiperSlide />
                   </div>
 
-                  <div className="h-24 w-full md:w-max md:m-0 md:bg-red-800 md:border-0 fixed mt-[15rem] pt-5 flex border-t-2  md:px-0 px-4 border-black bg-white">
+                  <div className="h-24 w-full md:w-max md:hidden md:m-0 md:bg-red-800 md:border-0 fixed mt-[15rem] pt-2 flex border-t-2  md:px-0 px-4 border-black bg-white">
                   <div className="h-12 text-start 	  w-24 ">
                     <p className="text-slate-600 ">Price</p>
                     <p className="font-bold  text-2xl">R${getInformation.productPrice.toFixed(2)}</p>
@@ -331,7 +367,7 @@ const Collection = () => {
                     </div>
                   </div>
 
-                  <div className="bg-white float-right h-[25rem] w-full  pl-4 pr-4">
+                  <div className="bg-white aling-center float-right h-[28rem] w-full  pl-4 pr-4">
                  
 
                  
@@ -347,7 +383,7 @@ const Collection = () => {
                     </p>
                     </div>
 
-                    <p className="h-max w-96   text-start mb-4 text-slate-500 text-md break-all">
+                    <p className="h-max w-96    text-start mb-4 text-slate-500 text-md break-all">
                       {getInformation.productDescription}
                       dsoadsadisaid9sa9id9asi9dasi9id9asi9dasi9idas9id9asuj98udjs8aud8sua89dusa89ud8sua98duas89usda
                     </p>
@@ -376,8 +412,14 @@ const Collection = () => {
                     </div>
 
                     <div className=" w-full float-left flex ">
-                      <div className="">
-        
+                      <div className=" h-max mt-[5rem] hidden  md:block w-max">
+                      <span
+                        className="lg:py-4 lg:px-4 p-2 float-right w-42 bg-black text-white font-bold cursor-pointer"
+                        onClick={() => handleCart(getInformation)}
+                      >
+                        Adicionar ao carrinho
+                      </span>
+                   
                       </div>
                     </div>
                   </div>
