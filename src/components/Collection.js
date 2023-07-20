@@ -435,31 +435,26 @@ const Collection = () => {
           <div className="h-max w-max flex px-4 flex-wrap justify-center">
             {filterItens?.map((event, index) => {
               return (
-                <div  onClick={() => moreDetails(event)} className=" w-48 h-max lg:w-60 lg:h-full    mt-2  mx-1.5      ">
+                
+                  <div   onClick={() => moreDetails(event)} className=" w-32  mx-4  h-full   mt-2  mx-1     ">
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
-                  <div className="h-36 w-42  w-full  bg-white rounded-b-xl">
-                  
-
-                    <div className="w-full h-max">
-                      <div
-                       
-                        className="flex h-max cursor-pointer rounded  w-max px-4 float-right bg-black  "
-                      >
-                    
-                      </div>
-                      <div>  <p className="text-stone-500 font bold  text-start ">
-                      {event.productName}{" "}
+                  <div className=" w-42   w-full   bg-white">
+                    <p className="text-start font-bold  text-lg font bold  text-center ">
+                      {event.productName}
                     </p>
+                   
 
-                 
-                      </div>
-                      <span className="text-black font-bold">
-                        R${event.productPrice}
+                    <div className="w-full h-max ">
+                    
+                    
+                      <span className="text-[#8C8C8C]  text-sm font-bold">
+                        R${event.productPrice.toFixed(2)}
                       </span>
                     </div>
                   </div>
                 </div>
+              
               );
             })}
           </div>
