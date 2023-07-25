@@ -6,7 +6,7 @@ import Collection from '../components/Collection';
 import Brands from '../components/Brands';
 import logo01 from '../assets/logo01.jpg'
 import { Link } from "react-router-dom"
-
+import SwiperMain from '../components/SwiperMain';
 import { Outlet } from "react-router-dom"
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -21,8 +21,10 @@ function Home(){
     return(
         <>
     
-     <Header/>
-    <Main/>
+    
+    <div className='h-12 w-full  mb-4'><Header/></div>
+<SwiperMain/> 
+     
 <Collection/>
       <Footer/>
         </>

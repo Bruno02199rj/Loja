@@ -7,7 +7,7 @@ const Header = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="h-max w-full  fixed z-50">
+    <div className="h-max w-full   fixed z-50">
       <nav class="bg-white border-gray-200  py-2  dark:bg-gray-900">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="https://flowbite.com/" class="flex items-center">

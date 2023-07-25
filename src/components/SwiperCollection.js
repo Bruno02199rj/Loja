@@ -29,12 +29,12 @@ const Swiper2 = ({eldata}) => {
       scrollbar={{ draggable: true ,}}
       
       autoHeight={true}
-     
+   
       
       
      >
        
-       {eldata.map((item)=><SwiperSlide    style={{ backgroundImage: `url("${item.image}")`
+       {eldata.map((item)=><SwiperSlide   style={{ backgroundImage: `url("${item.image}")`
          ,height: 180,
          width:300 ,
          backgroundPosition: 'center', 

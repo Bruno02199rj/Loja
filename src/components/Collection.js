@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsFillCartPlusFill, BsCartFill } from "react-icons/bs";
-import asset from '../assets/Icon.png'
+import asset from "../assets/Icon.png";
 
 import { FiCheck } from "react-icons/fi";
 
@@ -10,10 +10,10 @@ import Swiper from "./Swiper";
 import { SwiperSlide } from "swiper/react";
 import Swiper2 from "./SwiperCollection";
 import Footer from "./Footer";
-import seta from "../assets/seta-esquerda.png"
+import seta from "../assets/seta-esquerda.png";
 import Brands from "./Brands";
 import SwiperMostAcessed from "./SwiperMostAcessed";
-import Main from "./Main";
+
 import SwiperCart from "./SwiperCart";
 import ConsultaCorreios from "./ConsultaCorreios";
 
@@ -46,9 +46,6 @@ const Collection = () => {
   const currentItens = eldata.slice(startIndex, endIndex);
 
   const [sum, setSum] = useState();
-
-
-
 
   useEffect(() => {
     axios.get("/products").then((res) => {
@@ -147,54 +144,42 @@ const Collection = () => {
 
   const handleFilter = (event) => {
     let fil = eldata.filter((e) => e.productCategory == event);
-    console.log(fil)
+    console.log(fil);
     setFilterItens(fil);
     setBolleanFilter(true);
   };
- 
+
   const soma = Cart.reduce(
     (accumulator, person) => accumulator + person["productPrice"],
     0
   );
-  
 
   return (
     <section className="        w-full h-max  ">
-     
-    
-    
       <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900"></blockquote>
 
-
       <div className=" h-max   w-full mb-12 z-40 flex flex-wrap justify-center">
-                    {unico.map((event)=>{
-                   
-                        return(
-                            
-                            <p onClick={()=>handleFilter(event)} className="mx-1 uppercase hover:bg-black hover:text-white p-2">{event}</p>
-                        )
-                     
-                    })}
-                   
-                     
+        {unico.map((event) => {
+          return (
+            <p
+              onClick={() => handleFilter(event)}
+              className="mx-1 uppercase hover:bg-black text-sm hover:text-white p-2"
+            >
+              {event}
+            </p>
+          );
+        })}
 
-         
-
-               
-     
-                    
-                 
-
-                    </div>
-      <div className="h-12 w-full mt-[30rem] fixed z-50">
-        <div
-          onClick={() => setShowModal(true)}
-          className="h-12 w-12  cursor-pointer bg-gray-200 float-right p-2 rounded-full "
-        >
-          <BsCartFill size={30} />
+        <div className="h-12 w-full float-right mt-[18rem] lg:mt-32  fixed z-50">
+          <div
+            onClick={() => setShowModal(true)}
+            className="h-12 w-12  cursor-pointer bg-gray-200 float-right p-2 rounded-full "
+          >
+            <BsCartFill size={30} />
+          </div>
         </div>
       </div>
-      
+
       {showModal ? (
         <div>
           <div
@@ -206,109 +191,82 @@ const Collection = () => {
             <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
 
             <div class="fixed inset-0 z-10 overflow-y-auto">
-              
               <div class="flex  min-h-full  items-end justify-center p-4 text-center items-center p-0">
-              
                 <div className="min-h-full  w-full    bg-white ">
-
-       <div className="h-max z-50 flex px-6  w-full bg-white fixed ">
-                  <img
-                  src={seta}
+                  <div className="h-max z-50 flex px-6  w-full bg-white fixed ">
+                    <img
+                      src={seta}
                       className=" h-6  w-6 rounded-2xl   font-bold mt-2"
                       onClick={() => setShowModal(false)}
                     />
-                
-                   
+
                     <p className="flex-1  mt-2 font-bold text-lg">Carrinho</p>
-                   
-                  
-                  
                   </div>
                   <div className="h-max  w-full      ">
-          
                     {Cart.map((event, index) => {
                       console.log(event);
                       return (
                         <div className="  flex justify-center text-start     ">
-                          <div className="h-max mx-8 mt-12  p-[1rem] w-full flex bg-[#F2F2F2] mb-4 rounded-md">
-                          <div className="w-max  h-max   ">
-                            <SwiperCart eldata={event.productImage} />
-                          </div>
-  
-                            <div className="">
-                            <div className=" h-max   w-full  text-start ml-4 ">
-                            <span className="h-4 w-max font-bold ">
-                              {event.productName}
-                            </span>
-                            <br/>  
-                              
-                                <span className="text-sm text-slate-500">
+                          <div className="h-max  mt-12  md:p-[1rem] w-full flex bg-[#F2F2F2] mb-4 rounded-md">
+                            <div className="w-max  h-max   ">
+                              <SwiperCart eldata={event.productImage} />
+                            </div>
+
+                            <div className="  ">
+                              <div className=" h-max   w-full  md:text-start ml-1 md:ml-4 ">
+                                <span className="h-4  w-max font-bold ">
+                                  {event.productName}
+                                </span>
+                                <br />
+
+                                <span className="md:text-sm text-xs   text-slate-500">
                                   {event._id}
                                 </span>
-                            
-                            </div>
-                            
-                  
+                              </div>
 
-                              <span className="text-slate-500 ml-4 text-sm">
+                              <span className="text-slate-500 ml-1 md:ml-4  text-sm">
                                 {sizeOpt[index]}
-                           
                               </span>
-                            
-                            <p className="ml-4 mt-14 font-bold">
-                              R${event.productPrice.toFixed(2)}
-                            </p>
+
+                              <p className="ml-1 md:ml-4 mt-8 md:mt-14 font-bold">
+                                R${event.productPrice.toFixed(2)}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                        </div>
                       );
-                      
                     })}
                   </div>
 
                   <div className="   h-max w-full  ">
                     <div className="flex w-full justify-center h-[4rem]   ">
                       <div className="h-12 ml-8 w-full align-center">
-                  
-                     
-                      <p className="text-slate-500 text-start ">subtotal</p>
+                        <p className="text-slate-500 text-start ">
+                          total de produtos
+                        </p>
                       </div>
-                    
-                      <p className="text-end mr-8 font-bold"> R${soma.toFixed(2)}</p>
-                  
 
-                     
-                  
+                      <p className="text-end mr-8 font-bold">{Cart.length}</p>
                     </div>
                   </div>
                   <div className="   h-max w-full  ">
                     <div className="flex w-full justify-center h-[4rem]   ">
                       <div className="h-12  w-full ml-8 align-center">
-                  
-                     
-                      <p className="text-slate-500 text-start ">Total</p>
+                        <p className="text-slate-500 text-start ">Total</p>
                       </div>
-                    
-                      <p className="text-end font-bold mr-8"> R${soma.toFixed(2)}</p>
-                  
 
-                     
-                  
+                      <p className="text-end font-bold mr-8">
+                        {" "}
+                        R${soma.toFixed(2)}
+                      </p>
                     </div>
                   </div>
                   <div className="   h-max w-full  border-t border-black  ">
                     <div className="flex w-full  justify-center h-[5rem]   ">
                       <div className="flex justify-center rounded-md mt-4 h-12 bg-black text-white w-full mx-8 align-center">
-                  
-                     
-                      <p className=" mt-3">Finalizar Compra</p><img className="h-4 mt-4 ml-4 w-4" src={asset}/>
+                        <p className=" mt-3">Finalizar Compra</p>
+                        <img className="h-4 mt-4 ml-4 w-4" src={asset} />
                       </div>
-                    
-                    
-                  
-
-                     
-                  
                     </div>
                   </div>
                 </div>
@@ -320,8 +278,6 @@ const Collection = () => {
         <p></p>
       )}
 
-   
-
       {getDetails ? (
         <div>
           <div
@@ -330,68 +286,61 @@ const Collection = () => {
             role="dialog"
             aria-modal="true"
           >
-            <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+            <div class="fixed inset-0 bg-white transition-opacity"></div>
 
-            <div class="fixed inset-0 z-10 overflow-y-auto ">
-              <div class="flex h-full  items-end justify-center  text-center sm:items-center sm:p-0">
-                
-                <div className=" w-full h-full  ">
-                 
-                  <div className=" h-max w-full bg-[#F5F5F5] ">
-                  <div className="h-12  z-50 flex px-4  w-full bg-white fixed  ">
-                  <img
-                  src={seta}
-                      className=" h-6  w-6 rounded-2xl   font-bold mt-2"
-                      onClick={() => setGetDetails(false)}
-                    />
-                
-                   
-                    <p className="flex-1  mt-2 font-bold text-lg">Detalhes</p>
-                   
-                  
-                  
-                  </div>
+            <div class="fixed inset-0 z-10   h-max  ">
+              <div class="flex h-max  items-end justify-center  text-center sm:items-center sm:p-0">
+                <div className=" w-full h-full  	   md:flex">
+                  <div className=" h-max  w-full  bg-[#F5F5F5] md:h-full md:bg-white ">
+                    <div className="h-12   z-50 flex px-4   w-full bg-white fixed  ">
+                      <img
+                        src={seta}
+                        className=" h-6  w-6 rounded-2xl   font-bold mt-2"
+                        onClick={() => setGetDetails(false)}
+                      />
+
+                      <p className="flex-1 mt-2 font-bold text-lg">Detalhes</p>
+                    </div>
                     <Swiper eldata={getInformation} />
+
                     <SwiperSlide />
                   </div>
 
-                  <div className="h-12 w-full  md:border-0  pt-2 flex border-t-2  px-4 border-black bg-white">
-                  <div className="h-12 text-start 	  w-24 ">
-                    <p className="text-slate-600 ">Preço</p>
-                    
-                    <p className="font-bold  text-2xl">R${getInformation.productPrice.toFixed(2)}</p>
+                  <div className="h-12 w-full md:border-0 md:hidden  pt-2 flex border-t-2  px-4 border-black bg-white">
+                    <div className="h-12 text-start 	  w-24 ">
+                      <p className="font-bold  text-2xl">
+                        R${getInformation.productPrice.toFixed(2)}
+                      </p>
+                    </div>
                   </div>
-                 
-                  </div>
 
-                  <div className="bg-white aling-center float-right h-max w-full  pl-4 pr-4">
-                 
+                  <div className="bg-white  md:mt-[19vh] aling-center float-right h-max w-full  pl-4 pr-4">
+                    <p className="  w-70 text-2xl"></p>
 
-                 
-                    <p className=" mt-2 w-70 text-2xl"></p>
-
-                    <p className="text-black   float-left text-sm mt-6">
-                    <p className="font-bold uppercase">
-                      {getInformation.productName} 
-                    </p>
-                    
+                    <p className="text-black   float-left text-sm ">
+                      <p className="font-bold uppercase">
+                        {getInformation.productName}
+                      </p>
                     </p>
 
-                    <div className="h-12 text-[#CFCFCF] w-full   flex">
-                    cod:{getInformation._id}  
+                    <div className="h-max text-[#CFCFCF] w-full   flex">
+                      cod:{getInformation._id}
                     </div>
 
                     <p className="h-max w-96    text-start mb-4 text-[#7C7C7C] text-md break-all">
                       {getInformation.productDescription}
-                      
                     </p>
 
                     <div className="  w-full h-4 ">
-                      <span className="float-left text-lg font-bold">Tamanho </span>
+                      <span className="float-left text-lg font-bold">
+                        Tamanho{" "}
+                      </span>
                     </div>
 
-                    <div className=" w-full h-max  mt-4
-                    ">
+                    <div
+                      className=" w-full h-max mt-4
+                    "
+                    >
                       {getInformation.productSize.map((item, index) => {
                         var sizeValue = getInformation.productSize[index].size;
 
@@ -408,18 +357,15 @@ const Collection = () => {
                         );
                       })}
                     </div>
-                    <div className="h-32  w-full "></div>
-                    <div className="  w-full mt-2 flex justify-center mb-4">
-                   
-                   <span
-                     className=" p-2 float-right w-full bg-black text-white font-bold rounded-md cursor-pointer"
-                     onClick={() => handleCart(getInformation)}
-                   >
-                     Adicionar ao carrinho
-                   </span>
-                
-              
-                 </div>
+                    
+                    <div className="  w-full md:mt-2 flex justify-center   md:mb-4">
+                      <span
+                        className=" p-2 float-right mt-[8vh] md:mt-[80px]   w-full bg-black text-white font-bold rounded-md cursor-pointer"
+                        onClick={() => handleCart(getInformation)}
+                      >
+                        Adicionar ao carrinho
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -432,48 +378,46 @@ const Collection = () => {
 
       <div className="h-full w-full  flex flex-wrap justify-center ">
         {booleanFilter ? (
-          <div className="h-max w-max flex px-4 flex-wrap justify-center">
+          <div className="h-max w-max flex  flex-wrap justify-center">
             {filterItens?.map((event, index) => {
               return (
-                
-                  <div   onClick={() => moreDetails(event)} className=" w-32  mx-4  h-full   mt-2  mx-1     ">
+                <div
+                  onClick={() => moreDetails(event)}
+                  className=" w-32    h-full   mt-2  mx-1     "
+                >
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
                   <div className=" w-42   w-full   bg-white">
                     <p className="text-start font-bold  text-lg font bold  text-center ">
                       {event.productName}
                     </p>
-                   
 
                     <div className="w-full h-max ">
-                    
-                    
                       <span className="text-[#8C8C8C]  text-sm font-bold">
                         R${event.productPrice.toFixed(2)}
                       </span>
                     </div>
                   </div>
                 </div>
-              
               );
             })}
           </div>
         ) : (
-          <div className="h-max w-full   flex justify-center flex-wrap ">
+          <div className="h-max w-max   flex justify-center flex-wrap ">
             {eldata?.map((event, index) => {
               return (
-                <div   onClick={() => moreDetails(event)} className=" w-32  mx-4  h-full   mt-2  mx-1     ">
+                <div
+                  onClick={() => moreDetails(event)}
+                  className=" w-32    h-full   mt-2  mx-1     "
+                >
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
                   <div className=" w-42   w-full   bg-white">
                     <p className="text-start font-bold  text-lg font bold  text-center ">
                       {event.productName}
                     </p>
-                   
 
                     <div className="w-full h-max ">
-                    
-                    
                       <span className="text-[#8C8C8C]  text-sm font-bold">
                         R${event.productPrice.toFixed(2)}
                       </span>
