@@ -22,7 +22,7 @@ function Home(){
         <>
     
     
-    <div className='h-12 w-full  mb-4'><Header/></div>
+    <div className='h-20 w-full  mb-4'><Header/></div>
 <SwiperMain/> 
      
 <Collection/>

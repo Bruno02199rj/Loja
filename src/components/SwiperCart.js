@@ -17,7 +17,7 @@ const SwiperCart = ({eldata}) => {
 
 
   return (
-    <Swiper className='  w-48   bg-[#E2E2E2] rounded-md  '
+    <Swiper className='  w-48   bg-[#E2E2E2] md:rounded-md  '
     
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}

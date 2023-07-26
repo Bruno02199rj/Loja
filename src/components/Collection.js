@@ -158,19 +158,19 @@ const Collection = () => {
     <section className="        w-full h-max  ">
       <blockquote class="   mb-12 text-2xlfont-bold text-center italic text-center text-slate-900"></blockquote>
 
-      <div className=" h-max   w-full mb-12 z-40 flex flex-wrap justify-center">
+      <div className=" h-max    w-full mb-12 z-40 flex flex-wrap justify-center">
         {unico.map((event) => {
           return (
             <p
               onClick={() => handleFilter(event)}
-              className="mx-1 uppercase hover:bg-black text-sm hover:text-white p-2"
+              className="mx-1 bg-[#F2F2F2]  rounded-md uppercase hover:bg-black text-sm hover:text-white p-2"
             >
               {event}
             </p>
           );
         })}
 
-        <div className="h-12 w-full float-right mt-[18rem] lg:mt-32  fixed z-50">
+        <div className="h-12 w-full  float-right mt-[15rem] lg:mt-0  fixed z-50">
           <div
             onClick={() => setShowModal(true)}
             className="h-12 w-12  cursor-pointer bg-gray-200 float-right p-2 rounded-full "
@@ -214,7 +214,7 @@ const Collection = () => {
 
                             <div className="  ">
                               <div className=" h-max   w-full  md:text-start ml-1 md:ml-4 ">
-                                <span className="h-4  w-max font-bold ">
+                                <span className="h-4  w-max font-bold text-sm ">
                                   {event.productName}
                                 </span>
                                 <br />
@@ -228,7 +228,7 @@ const Collection = () => {
                                 {sizeOpt[index]}
                               </span>
 
-                              <p className="ml-1 md:ml-4 mt-8 md:mt-14 font-bold">
+                              <p className="ml-1 md:ml-4 text-sm md:mt-14 font-bold">
                                 R${event.productPrice.toFixed(2)}
                               </p>
                             </div>
@@ -317,7 +317,7 @@ const Collection = () => {
                   <div className="bg-white  md:mt-[19vh] aling-center float-right h-max w-full  pl-4 pr-4">
                     <p className="  w-70 text-2xl"></p>
 
-                    <p className="text-black   float-left text-sm ">
+                    <p className="text-black   float-left text-lg ">
                       <p className="font-bold uppercase">
                         {getInformation.productName}
                       </p>
@@ -388,7 +388,7 @@ const Collection = () => {
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
                   <div className=" w-42   w-full   bg-white">
-                    <p className="text-start font-bold  text-lg font bold  text-center ">
+                    <p className="text-start font-bold  text-sm font bold  text-center ">
                       {event.productName}
                     </p>
 
@@ -413,7 +413,7 @@ const Collection = () => {
                   <Swiper2 eldata={event.productImage} />
                   <SwiperSlide />
                   <div className=" w-42   w-full   bg-white">
-                    <p className="text-start font-bold  text-lg font bold  text-center ">
+                    <p className="text-start font-bold  text-sm font bold  text-center ">
                       {event.productName}
                     </p>
 
